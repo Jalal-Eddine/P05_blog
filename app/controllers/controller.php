@@ -2,6 +2,7 @@
 
 // Chargement des classes
 require_once('models/PostManager.php');
+require_once('models/CommentManager.php');
 
 function listPosts()
 {
@@ -20,4 +21,18 @@ function post()
     $comments = $commentManager->getComments($_GET['id']);
 
     require('views/postView.php');
+}
+
+function addComment($postId, $title, $content)
+{
+    $commentManager = new CommentManager();
+
+    $affectedLines = $commentManager->postComment($postId, $title, $content);
+
+    if ($affectedLines === false) {
+        throw new Exception('Impossible d\'ajouter le commentaire !');
+    }
+    else {
+        header('Location: index.php?action=post&id=' . $postId);
+    }
 }
