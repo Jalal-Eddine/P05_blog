@@ -32,7 +32,8 @@ try { // On essaie de faire des choses
         }
     }
     else {
-        listPosts();
+        // listPosts();
+        require('views/home.php');
     }
 }
 catch(Exception $e) { // S'il y a eu une erreur, alors...
