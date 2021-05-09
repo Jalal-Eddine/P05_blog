@@ -44,7 +44,14 @@ function addPost($title, $hero_link, $excerpt, $content)
     else {
         // header('Location: index.php?action=post&id=' . $postId);
         echo "post created successfuly";
+        header( "refresh:3;url=index.php?action=listPosts" );
     }
+}
+function deletePost()
+{
+    $postManager = new PostManager();  
+    $deletePost = $postManager->deletePost($_GET['id']);
+    header( "refresh:3;url=index.php?action=postsManager" );
 }
 function addComment($postId, $title, $content)
 {

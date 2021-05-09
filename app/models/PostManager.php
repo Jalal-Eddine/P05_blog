@@ -24,18 +24,31 @@ class PostManager extends Manager
     public function createPost($title, $hero_link, $excerpt, $content)
     {
         $db = $this->dbConnect();
-        $post = $db->prepare('INSERT INTO post(user_id, post_status_id, title, hero_link, excerpt, content,created_date,updated_date) VALUES(1, 1, ?,?,?,?, NOW(),NOW())');
+        $post = $db->prepare('INSERT INTO post(user_id, post_status_id, title, hero_link, excerpt, content,created_date,update_date) VALUES(1, 1, ?,?,?,?, NOW(),NOW())');
         $affectedLines = $post->execute(array($title, $hero_link, $excerpt, $content));
 
         return $affectedLines;
     }
-    // Modify post
-    // public function modifyPost($title, $hero_link, $excerpt, $content)
-    // {
-    //     $db = $this->dbConnect();
-    //     $post = $db->prepare('INSERT INTO post(user_id, post_status_id, title, hero_link, excerpt, content,created_date) VALUES(1, 1, ?,?,?,?, NOW())');
-    //     $affectedLines = $post->execute(array($title, $hero_link, $excerpt, $content));
+    //Modify post
+    public function modifyPost($title, $hero_link, $excerpt, $content)
+    {
+        $db = $this->dbConnect();
+        $post = $db->prepare('INSERT INTO post(user_id, post_status_id, title, hero_link, excerpt, content,created_date) VALUES(1, 1, ?,?,?,?, NOW())');
+        $affectedLines = $post->execute(array($title, $hero_link, $excerpt, $content));
 
-    //     return $affectedLines;
-    // }
+        return $affectedLines;
+    }
+    public function deletePost($postId)
+    {
+        try {
+         $db = $this->dbConnect();
+          // sql to delete a record
+          $delete = $db->prepare("DELETE FROM post WHERE id=?");
+          // use exec() because no results are returned
+          $delete->execute(array($postId));
+          echo "Record deleted successfully";
+        } catch(PDOException $e) {
+          echo $e->getMessage();
+        }
+    }
 }
