@@ -23,7 +23,22 @@ function post()
 
     require('views/postView.php');
 }
-
+function createPost()
+{
+    require('views/createPostView.php');
+}
+function addPost($title, $hero_link, $excerpt, $content)
+{
+    $postManager = new PostManager();
+    $affectedLines = $postManager->createPost($title, $hero_link, $excerpt, $content);
+    if ($affectedLines === false) {
+        throw new Exception('Impossible d\'ajouter le commentaire !');
+    }
+    else {
+        // header('Location: index.php?action=post&id=' . $postId);
+        echo "post created successfuly";
+    }
+}
 function addComment($postId, $title, $content)
 {
     $commentManager = new CommentManager();

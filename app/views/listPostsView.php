@@ -24,6 +24,9 @@
             <h2>Sed amet aliquam</h2>
         </header>
         <p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna.</p>
+        <p dir="rtl">فَسَابِقُوا ـ رَحِمَكُمُ اللهُ ـ إِلَى مَنَازِلِكُمْ الَّتِي أُمِرْتُمْ أَنْ تَعْمُرُوهَا، وَالَّتِي رُغِّبْتُمْ فِيهَا، وَدُعِيتُمْ إِلَيْهَا.
+            وَاسْتَتِمُّوا نِعَمَ اللهِ عَلَيْكُمْ بِالصَّبْرِ عَلَى طَاعَتِهِ، وَالْـمُجَانَبَةِ لِمَعْصِيَتِهِ، فَإِنَّ غَداً مِنَ الْيَوْمِ قَرِيبٌ.
+            مَا أَسْرَعَ السَّاعَاتِ فِي الْيَوْمِ، وَأَسْرَعَ الاَْيَّامَ فِي الشَّهْرِ، وَأَسْرَعَ الشُّهُورَ فِي السَّنَةِ، وَأَسْرَعَ السِّنِينَ فِي الْعُمُرِ!</p>
     </div>
 </section>
 
@@ -33,7 +36,7 @@ while ($data = $posts->fetch()) {
     <!-- Two -->
     <section id="two" class="spotlights">
         <section>
-            <a href="generic.html" class="image">
+            <a href="index.php?action=post&id=<?= $data['id'] ?>" class="image">
                 <img src="<?= $data['hero_link'] ?>" alt="" data-position="center center" />
             </a>
             <div class="content">
@@ -50,10 +53,10 @@ while ($data = $posts->fetch()) {
             </div>
         </section>
     </section>
-    <?php
+<?php
 }
 $posts->closeCursor();
-    ?>
-    <?php $content = ob_get_clean(); ?>
+?>
+<?php $content = ob_get_clean(); ?>
 
-    <?php require('template.php'); ?>
+<?php require('template.php'); ?>
