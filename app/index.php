@@ -30,6 +30,9 @@ try { // On essaie de faire des choses
                 throw new Exception('No post id was send');
             }
         }
+        elseif($_GET['action'] == 'postsManager') {
+            postsManager();
+        }
         elseif($_GET['action'] == 'createPost') {
             createPost();
         }

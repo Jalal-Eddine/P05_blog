@@ -42,7 +42,7 @@ while ($data = $posts->fetch()) {
             <div class="content">
                 <div class="inner">
                     <header class="major">
-                        <h3><?= htmlspecialchars($data['title']) ?></h3><br>
+                        <h3><a href="index.php?action=post&id=<?= $data['id'] ?>"><?= htmlspecialchars($data['title']) ?></a></h3><br>
                         <em>le <?= $data['updated_date'] ?></em>
                     </header>
                     <p><?= nl2br(htmlspecialchars($data['excerpt'])) ?></p>

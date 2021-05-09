@@ -23,6 +23,13 @@ function post()
 
     require('views/postView.php');
 }
+function postsManager() 
+{
+    $postManager = new PostManager(); // Création d'un objet
+    $posts = $postManager->getPosts(); // Appel d'une fonction de cet objet
+
+    require('views/adminPostsView.php');   
+}
 function createPost()
 {
     require('views/createPostView.php');

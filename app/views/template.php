@@ -28,7 +28,7 @@
             <ul class="links">
                 <li><a href="index.php">Home</a></li>
                 <li><a href="index.php?action=listPosts">List of blog Post</a></li>
-                <li><a href="generic.html">Generic</a></li>
+                <li><a href="index.php?action=postsManager">Posts Manager</a></li>
                 <li><a href="elements.html">Elements</a></li>
             </ul>
             <ul class="actions stacked">
