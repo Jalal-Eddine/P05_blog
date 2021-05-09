@@ -20,4 +20,22 @@ class PostManager extends Manager
 
         return $post;
     }
+    // create post
+    public function createPost($title, $hero_link, $excerpt, $content)
+    {
+        $db = $this->dbConnect();
+        $post = $db->prepare('INSERT INTO post(user_id, post_status_id, title, hero_link, excerpt, content,created_date,updated_date) VALUES(1, 1, ?,?,?,?, NOW(),NOW())');
+        $affectedLines = $post->execute(array($title, $hero_link, $excerpt, $content));
+
+        return $affectedLines;
+    }
+    // Modify post
+    // public function modifyPost($title, $hero_link, $excerpt, $content)
+    // {
+    //     $db = $this->dbConnect();
+    //     $post = $db->prepare('INSERT INTO post(user_id, post_status_id, title, hero_link, excerpt, content,created_date) VALUES(1, 1, ?,?,?,?, NOW())');
+    //     $affectedLines = $post->execute(array($title, $hero_link, $excerpt, $content));
+
+    //     return $affectedLines;
+    // }
 }

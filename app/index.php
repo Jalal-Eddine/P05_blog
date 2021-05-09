@@ -30,6 +30,24 @@ try { // On essaie de faire des choses
                 throw new Exception('No post id was send');
             }
         }
+        elseif($_GET['action'] == 'createPost') {
+            createPost();
+        }
+        elseif ($_GET['action'] == 'addPost') {
+            // if (true) {
+                if (!empty($_POST['title']) && !empty($_POST['hero_link'])&& !empty($_POST['excerpt'])&& !empty($_POST['content'])) {
+                    addPost($_POST['title'], $_POST['hero_link'], $_POST['excerpt'],$_POST['content']);
+                }
+                else {
+                    // Autre exception
+                    throw new Exception('Not all the information were filled');
+                }
+            // }
+            // else {
+            //     // Autre exception
+            //     throw new Exception('No post id was send');
+            // }
+        }
     }
     else {
         // listPosts();
