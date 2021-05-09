@@ -1,7 +1,7 @@
 <?php $title = 'Mon blog'; ?>
 <?php ob_start(); ?>
 
-<form action="index.php?action=addPost" method="post">
+<form action="index.php?action=addPost" method="post" style="max-width: 900px;">
     <div>
         <label for="title">Title</label><br />
         <input type="text" id="title" name="title" />
