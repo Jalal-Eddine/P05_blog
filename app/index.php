@@ -51,6 +51,15 @@ try { // On essaie de faire des choses
             //     throw new Exception('No post id was send');
             // }
         }
+        elseif ($_GET['action'] == 'deletePost') {
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                deletePost();
+            }
+            else {
+                // Autre exception
+                throw new Exception('No post id was send');
+            }
+        }
     }
     else {
         // listPosts();
