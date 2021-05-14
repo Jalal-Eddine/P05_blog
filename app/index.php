@@ -1,5 +1,6 @@
 <?php
 require('controllers/controller.php');
+require('controllers/usercontroller.php');
 
 try { // On essaie de faire des choses
     if (isset($_GET['action'])) {
@@ -79,6 +80,25 @@ try { // On essaie de faire des choses
             else {
                 // Autre exception
                 throw new Exception('No post id was send');
+            }
+        }
+        elseif($_GET['action'] == 'login'){
+            require('views/loginView.php');
+        }
+        elseif($_GET['action'] == 'register'){
+            require('views/registerView.php');
+        }
+        elseif($_GET['action'] == 'users'){
+            displayUsers();
+        }
+        elseif ($_GET['action'] == 'createUser') {
+
+            if (!empty($_POST['first_name']) && !empty($_POST['last_name'])&& !empty($_POST['username'])&& !empty($_POST['email'])&& !empty($_POST['passeword'])) {
+                createUser($_POST['first_name'], $_POST['last_name'],$_POST['username'], $_POST['email'],$_POST['passeword']);
+            }
+            else {
+                // Autre exception
+                throw new Exception('Not all the information were filled');
             }
         }
     }
