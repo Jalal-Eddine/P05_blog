@@ -26,7 +26,7 @@
 							<li><a href="index.html">Home</a></li>
 							<li><a href="index.php?action=listPosts">List of blog Post</a></li>
 							<li><a href="index.php?action=postsManager">Posts Manager</a></li>
-							<li><a href="elements.html">Elements</a></li>
+							<li><a href="index.php?action=users">Users</a></li>
 						</ul>
 						<ul class="actions stacked">
 							<li><a href="#" class="button primary fit">Get Started</a></li>
