@@ -31,7 +31,7 @@ while ($data = $posts->fetch()) {
                     </header>
                     <ul class="actions">
                         <li><a href="index.php?action=post&id=<?= $data['id'] ?>" class="button">Display</a></li>
-                        <li><a href="#" class="button">Modify</a></li>
+                        <li><a href="index.php?action=modifyPost&id=<?= $data['id'] ?>" class="button">Modify</a></li>
                         <li><a href="index.php?action=deletePost&id=<?= $data['id'] ?>" class="button">Delete</a></li>
                     </ul>
                 </div>

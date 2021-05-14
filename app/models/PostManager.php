@@ -10,7 +10,7 @@ class PostManager extends Manager
 
         return $req;
     }
-
+    // Get Post
     public function getPost($postId)
     {
         $db = $this->dbConnect();
@@ -20,7 +20,7 @@ class PostManager extends Manager
 
         return $post;
     }
-    // create post
+    // Create post
     public function createPost($title, $hero_link, $excerpt, $content)
     {
         $db = $this->dbConnect();
@@ -30,14 +30,23 @@ class PostManager extends Manager
         return $affectedLines;
     }
     //Modify post
-    public function modifyPost($title, $hero_link, $excerpt, $content)
+    public function updatePost($post)
     {
         $db = $this->dbConnect();
-        $post = $db->prepare('INSERT INTO post(user_id, post_status_id, title, hero_link, excerpt, content,created_date) VALUES(1, 1, ?,?,?,?, NOW())');
-        $affectedLines = $post->execute(array($title, $hero_link, $excerpt, $content));
+        $sql = "UPDATE post SET ";
+        $sql .= "post_status_id='" . "1" . "', ";
+        $sql .= "title='" . $post['title'] . "', ";
+        $sql .= "hero_link='" . $post['hero_link'] . "', ";
+        $sql .= "excerpt='" . $post['excerpt'] . "', ";
+        $sql .= "content='" . $post['content'] . "', ";
+        $sql .= "update_date='" . "NOW()" . "' ";
+        $sql .= "WHERE id='" . $post['id'] . "' ";
+        $sql .= "LIMIT 1";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
 
-        return $affectedLines;
     }
+    // Delete Post
     public function deletePost($postId)
     {
         try {
