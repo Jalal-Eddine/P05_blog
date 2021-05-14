@@ -51,6 +51,27 @@ try { // On essaie de faire des choses
             //     throw new Exception('No post id was send');
             // }
         }
+        // elseif($_GET['action'] == 'createPost') {
+        //     createPost();
+        // }
+        elseif($_GET['action'] == 'modifyPost') {
+            modifyPost();
+        }
+        elseif ($_GET['action'] == 'updatePost') {
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                if (!empty($_POST['title']) && !empty($_POST['hero_link'])&& !empty($_POST['excerpt'])&& !empty($_POST['content'])) {
+                    updatePost();
+                }
+                else {
+                    // Autre exception
+                    throw new Exception('Not all the information were filled');
+                }
+            }
+            else {
+                // Autre exception
+                throw new Exception('No post id was send');
+            }
+        }
         elseif ($_GET['action'] == 'deletePost') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 deletePost();

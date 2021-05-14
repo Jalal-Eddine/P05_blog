@@ -18,9 +18,10 @@
             <?php
             while ($comment = $comments->fetch()) {
             ?>
+                <?php $allowed_tags = '<div><img><h1><h2><p><br><strong><em><ul><li>'; ?>
                 <p><strong>commented</strong> le <?= $comment['comment_date'] ?></p>
-                <h3><?= nl2br(htmlspecialchars($comment['title'])) ?></h3>
-                <p><?= nl2br(htmlspecialchars($comment['content'])) ?></p>
+                <h3><?= nl2br(strip_tags($comment['title'],$allowed_tags)); ?></h3>
+                <p><?= nl2br(strip_tags($comment['content'],$allowed_tags));?></p>
             <?php
             }
             ?>
