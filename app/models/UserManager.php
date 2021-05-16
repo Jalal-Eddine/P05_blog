@@ -10,12 +10,23 @@ class UserManger extends Manager
 
         return $req;
     }
+    // get user for connection
+    public function getUser($username)
+    {
+        //  Récupération de l'utilisateur et de son pass hashé
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT id, passeword FROM user WHERE username = :username');
+        $req->execute(array('username' => $username));
+        $result = $req->fetch();
+        return $result;
+    }
     // Create user
     public function createUser($first_name, $last_name, $username, $email, $passeword)
     {
+        $pass_hache = password_hash($passeword, PASSWORD_DEFAULT);
         $db = $this->dbConnect();
         $req = $db->prepare('INSERT INTO user(user_role_id, first_name, last_name, username, email, passeword, inscription_date) VALUES(1,?,?,?,?,?,NOW())');
-        $affectedLines = $req->execute(array($first_name, $last_name, $username, $email, $passeword));
+        $affectedLines = $req->execute(array($first_name, $last_name, $username, $email, $pass_hache));
 
         return $affectedLines;
     }
@@ -31,6 +42,5 @@ class UserManger extends Manager
     }
     public function updateUser()
     {
-
     }
 }
