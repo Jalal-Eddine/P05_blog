@@ -4,7 +4,10 @@
 require_once('models/PostManager.php');
 require_once('models/CommentManager.php');
 
-
+function homePage()
+{
+    
+}
 function listPosts()
 {
     $postManager = new PostManager(); // Création d'un objet
