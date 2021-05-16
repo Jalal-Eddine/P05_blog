@@ -34,6 +34,7 @@
             <ul class="actions stacked">
                 <li><a href="index.php?action=listPosts" class="button primary fit">Get Started</a></li>
                 <li><a href="index.php?action=login" class="button fit">Log In</a></li>
+                <li><a href="index.php?action=logout" class="button fit">Log Out</a></li>
             </ul>
         </nav>
 

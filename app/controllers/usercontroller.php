@@ -43,8 +43,20 @@ function loginUser()
             echo 'Mauvais identifiant ou mot de passe !';
         }
      }
-        echo "you're login";
-        header("refresh:3;url=index.php?action=listPosts");
+        header("Location: index.php?action=listPosts");
     }
     require('views/loginView.php');
 }
+function logout()
+ {
+    session_start();
+    
+    // Suppression des variables de session et de la session
+    // $_SESSION = array();
+    session_destroy();
+    
+    // Suppression des cookies de connexion automatique
+    // setcookie('login', '');
+    // setcookie('pass_hache', '');
+    header("refresh:3;url=index.php?action=login");
+ }

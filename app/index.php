@@ -81,9 +81,12 @@ try { // On essaie de faire des choses
                 // Autre exception
                 throw new Exception('Not all the information were filled');
             }
+        }elseif ($_GET['action'] == 'logout') {
+            logout();
         }
+        
     } else {
-        // listPosts();
+        // homePage();
         require('views/home.php');
     }
 } catch (Exception $e) { // S'il y a eu une erreur, alors...
