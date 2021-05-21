@@ -1,18 +1,18 @@
 <?php
 
 // Chargement des classes
-require_once('models/UserManager.php');
+require_once('models/AdminManager.php');
 
 function displayUsers()
 {
-    $userManager = new UserManger();
+    $userManager = new UserManager();
     $users = $userManager->getUsers();
     require('views/adminUsersManager.php');
 }
 function createUser($first_name, $last_name, $username, $email, $passeword)
 {
 
-    $userManager = new UserManger();
+    $userManager = new UserManager();
     $affectedLines = $userManager->createUser($first_name, $last_name, $username, $email, $passeword);
     if ($affectedLines === false) {
         throw new Exception('Impossible d\'ajouter un utilisateur !');
@@ -25,7 +25,7 @@ function createUser($first_name, $last_name, $username, $email, $passeword)
 function loginUser()
 {
     if (!empty($_POST['username']) && !empty($_POST['passeword'])){
-    $userManager = new UserManger();
+    $userManager = new UserManager();
     $result = $userManager->getUser($_POST['username']);
 
     // Comparaison du pass envoyé via le formulaire avec la base
@@ -58,5 +58,5 @@ function logout()
     // Suppression des cookies de connexion automatique
     // setcookie('login', '');
     // setcookie('pass_hache', '');
-    header("refresh:3;url=index.php?action=login");
+    header("Location: index.php?action=login");
  }

@@ -1,9 +1,9 @@
 <?php
 require_once("models/Manager.php"); // Vous n'alliez pas oublier cette ligne ? ;o)
 
-class PostManager extends Manager
+class PostsManager extends Manager
 {
-    public function getPosts()
+    protected function getPosts()
     {
         $db = $this->dbConnect();
         $req = $db->query('SELECT id, title, hero_link, excerpt,content, DATE_FORMAT(update_date, \'%d/%m/%Y à %Hh%imin%ss\') AS updated_date FROM post ORDER BY created_date DESC LIMIT 0, 5');
@@ -11,7 +11,7 @@ class PostManager extends Manager
         return $req;
     }
     // Get Post
-    public function getPost($postId)
+    protected function getPost($postId)
     {
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT id, title, hero_link, excerpt, content, DATE_FORMAT(update_date, \'%d/%m/%Y à %Hh%imin%ss\') AS updated_date FROM post WHERE id = ?');
@@ -21,7 +21,7 @@ class PostManager extends Manager
         return $post;
     }
     // Create post
-    public function createPost($title, $hero_link, $excerpt, $content)
+    protected function create($title, $hero_link, $excerpt, $content)
     {
         $db = $this->dbConnect();
         $post = $db->prepare('INSERT INTO post(user_id, post_status_id, title, hero_link, excerpt, content,created_date,update_date) VALUES(1, 1, ?,?,?,?, NOW(),NOW())');
@@ -30,7 +30,7 @@ class PostManager extends Manager
         return $affectedLines;
     }
     //Modify post
-    public function updatePost($post)
+    protected function update($post)
     {
         $db = $this->dbConnect();
         $sql = "UPDATE post SET ";
@@ -47,7 +47,7 @@ class PostManager extends Manager
 
     }
     // Delete Post
-    public function deletePost($postId)
+    protected function delete($postId)
     {
         try {
          $db = $this->dbConnect();
