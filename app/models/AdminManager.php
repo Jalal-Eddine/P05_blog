@@ -1,9 +1,9 @@
 <?php
 require_once("models/Manager.php"); // Vous n'alliez pas oublier cette ligne ? ;o)
 
-class UserManger extends Manager
+class AdminManager extends Manager
 {
-    public function getUsers()
+    protected function getUsers()
     {
         $db = $this->dbConnect();
         $req = $db->query('SELECT id, first_name, last_name, username, email, passeword, DATE_FORMAT(inscription_date, \'%d/%m/%Y at %Hh%imin%ss\') AS inscription_date FROM user ORDER BY inscription_date DESC LIMIT 0, 5');
@@ -11,7 +11,7 @@ class UserManger extends Manager
         return $req;
     }
     // get user for connection
-    public function getUser($username)
+    protected function getUser($username)
     {
         //  Récupération de l'utilisateur et de son pass hashé
         $db = $this->dbConnect();
@@ -21,7 +21,7 @@ class UserManger extends Manager
         return $result;
     }
     // Create user
-    public function createUser($first_name, $last_name, $username, $email, $passeword)
+    protected function create($first_name, $last_name, $username, $email, $passeword)
     {
         $pass_hache = password_hash($passeword, PASSWORD_DEFAULT);
         $db = $this->dbConnect();
@@ -31,7 +31,7 @@ class UserManger extends Manager
         return $affectedLines;
     }
 
-    public function deleteUser($postId)
+    protected function deleteUser($postId)
     {
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = ?');

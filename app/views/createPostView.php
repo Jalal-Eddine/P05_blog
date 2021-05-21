@@ -1,7 +1,7 @@
 <?php $title = 'Mon blog'; ?>
 <?php ob_start(); ?>
 <section class="inner" style="max-width:900px">
-    <form action="index.php?action=addPost" method="post" >
+    <form action="index.php?action=createPost" method="post" >
         <div>
             <label for="title">Title</label><br />
             <input type="text" id="title" name="title" />

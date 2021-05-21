@@ -1,91 +1,43 @@
 <?php
-require('controllers/controller.php');
-require('controllers/usercontroller.php');
+require('controllers/AdminController.php');
+require('controllers/CommentsController.php');
+require('controllers/PostsController.php');
+
+$postController = new PostsController;
+$commentsController = new CommentsController;
+$adminController = new AdminController;
 
 try { // On essaie de faire des choses
     if (isset($_GET['action'])) {
+        if(!isset($_SERVER['HTTP_REFERER'])){
+            // redirect them to your desired location
+            header('location:index.php');
+            exit;
+        }
         if ($_GET['action'] == 'listPosts') {
-            listPosts();
+            $postController->listPosts();
         } elseif ($_GET['action'] == 'post') {
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                post();
-            } else {
-                // Erreur ! On arrête tout, on envoie une exception, donc au saute directement au catch
-                throw new Exception('No post id was send');
-            }
+            $postController->post();
         } elseif ($_GET['action'] == 'addComment') {
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                if (!empty($_POST['title']) && !empty($_POST['content'])) {
-                    addComment($_GET['id'], $_POST['title'], $_POST['content']);
-                } else {
-                    // Autre exception
-                    throw new Exception('Not all the information were filled');
-                }
-            } else {
-                // Autre exception
-                throw new Exception('No post id was send');
-            }
+            $commentsController->addComment();
         } elseif ($_GET['action'] == 'postsManager') {
-            postsManager();
+            $postController->postsManager();
         } elseif ($_GET['action'] == 'createPost') {
-            createPost();
-        } elseif ($_GET['action'] == 'addPost') {
-            // if (true) {
-            if (!empty($_POST['title']) && !empty($_POST['hero_link']) && !empty($_POST['excerpt']) && !empty($_POST['content'])) {
-                addPost($_POST['title'], $_POST['hero_link'], $_POST['excerpt'], $_POST['content']);
-            } else {
-                // Autre exception
-                throw new Exception('Not all the information were filled');
-            }
-            // }
-            // else {
-            //     // Autre exception
-            //     throw new Exception('No post id was send');
-            // }
-        }
-        // elseif($_GET['action'] == 'createPost') {
-        //     createPost();
-        // }
-        elseif ($_GET['action'] == 'modifyPost') {
-            modifyPost();
-        } elseif ($_GET['action'] == 'updatePost') {
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                if (!empty($_POST['title']) && !empty($_POST['hero_link']) && !empty($_POST['excerpt']) && !empty($_POST['content'])) {
-                    updatePost();
-                } else {
-                    // Autre exception
-                    throw new Exception('Not all the information were filled');
-                }
-            } else {
-                // Autre exception
-                throw new Exception('No post id was send');
-            }
+            $postController->createPost();
+        } elseif ($_GET['action'] == 'modifyPost') {
+            $postController->modifyPost();
         } elseif ($_GET['action'] == 'deletePost') {
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                deletePost();
-            } else {
-                // Autre exception
-                throw new Exception('No post id was send');
-            }
+            $postController->deletePost();
         } elseif ($_GET['action'] == 'login') {
-            loginUser();
+            $adminController->loginUser();
         } elseif ($_GET['action'] == 'register') {
-            require('views/registerView.php');
+            $adminController->createUser();
         } elseif ($_GET['action'] == 'users') {
-            displayUsers();
-        } elseif ($_GET['action'] == 'createUser') {
-
-            if (!empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST['username']) && !empty($_POST['email']) && !empty($_POST['passeword'])) {
-                createUser($_POST['first_name'], $_POST['last_name'], $_POST['username'], $_POST['email'], $_POST['passeword']);
-            } else {
-                // Autre exception
-                throw new Exception('Not all the information were filled');
-            }
-        }elseif ($_GET['action'] == 'logout') {
-            logout();
+            $adminController->displayUsers();
+        } elseif ($_GET['action'] == 'logout') {
+            $adminController->logout();
         }
-        
-    } else {
+    }else{
         // homePage();
         require('views/home.php');
     }

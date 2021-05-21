@@ -3,7 +3,7 @@ require_once("models/Manager.php");
 
 class CommentManager extends Manager
 {
-    public function getComments($postId)
+    protected function get($postId)
     {
         $db = $this->dbConnect();
         $comments = $db->prepare('SELECT id, title, content, DATE_FORMAT(created_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date FROM comment WHERE post_id = ? ORDER BY created_date DESC');
@@ -11,8 +11,7 @@ class CommentManager extends Manager
 
         return $comments;
     }
-
-    public function postComment($postId, $title, $content)
+    protected function create($postId, $title, $content)
     {
         $db = $this->dbConnect();
         $comments = $db->prepare('INSERT INTO comment(post_id, title, content, user_id,comment_status_id, created_date) VALUES(?, ?, ?,1,1, NOW())');

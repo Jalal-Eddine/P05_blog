@@ -2,7 +2,7 @@
 <?php ob_start(); ?>
 <?php $data = $posts->fetch();?>
 <section class="inner" style="max-width:900px">
-    <form action="index.php?action=updatePost&id=<?php echo $data['id']; ?>" method="post" >
+    <form action="index.php?action=modifyPost&id=<?php echo $data['id']; ?>" method="post" >
         <div>
             <label for="title" >Title</label><br />
             <input type="text" id="title" name="title" value="<?php echo $data['title']; ?>"/>

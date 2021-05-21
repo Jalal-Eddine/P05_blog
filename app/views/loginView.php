@@ -37,13 +37,14 @@
 						<button type="submit" class="btn btn-success btn-lg btn-block">Login</button>
 					</div>
 				</form>
+
 			</div>
 
-			<!-- <h4 class="text-center">
-      <a target="_blank" href="https://codepen.io/Peeyush200/pen/mLwvJB">
-        Check out Social login form 
+			<h4 class="text-center">
+      <a target="_blank" href="index.php?action=register">
+        Register
       </a>
-    </h4> -->
+    </h4>
 		</div>
 		<script src="public/js/login.js"></script>
 	</body>
