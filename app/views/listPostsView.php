@@ -36,9 +36,6 @@ while ($data = $posts->fetch()) {
 ?>
     <!-- Two -->
     <section id="two" class="spotlights">
-    <?php
-    // if (($data['id']%2)==0) {
-    ?>
         <section>
             <a href="index.php?action=post&id=<?= $data['id'] ?>" class="image">
                 <img src="<?= $data['hero_link'] ?>" alt="" data-position="center center" />
@@ -47,7 +44,7 @@ while ($data = $posts->fetch()) {
                 <div class="inner">
                     <header class="major">
                         <h3><a href="index.php?action=post&id=<?= $data['id'] ?>"><?= htmlspecialchars($data['title']) ?></a></h3><br>
-                        <em>le <?= $data['updated_date'] ?></em>
+                        <em>le <?= $data['update_date'] ?></em>
                     </header>
                     <p><?= nl2br(htmlspecialchars($data['excerpt'])) ?></p>
                     <ul class="actions">
@@ -56,28 +53,6 @@ while ($data = $posts->fetch()) {
                 </div>
             </div>
         </section>
-        <?php
-    // } elseif (($data['id']%2)=0) { 
-        ?>
-        <section>
-            <a href="index.php?action=post&id=<?= $data['id'] ?>" class="image">
-                <img src="<?= $data['hero_link'] ?>" alt="" data-position="top center" />
-            </a>
-            <div class="content">
-                <div class="inner">
-                    <header class="major">
-                        <h3><a href="index.php?action=post&id=<?= $data['id'] ?>"><?= htmlspecialchars($data['title']) ?></a></h3><br>
-                        <em>le <?= $data['updated_date'] ?></em>
-                    </header>
-                    <p><?= nl2br(htmlspecialchars($data['excerpt'])) ?></p>
-                    <ul class="actions">
-                        <li><a href="index.php?action=post&id=<?= $data['id'] ?>" class="button">Learn more</a></li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-        <?php 
-    // } ?>
     </section>
 <?php
 }

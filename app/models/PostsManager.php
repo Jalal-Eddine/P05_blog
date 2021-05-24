@@ -1,29 +1,25 @@
 <?php
-require_once("models/Manager.php"); // Vous n'alliez pas oublier cette ligne ? ;o)
+require_once("models/Manager.php"); 
 
 class PostsManager extends Manager
 {
+    static protected $table_name = "post";
     protected function getPosts()
     {
-        $db = $this->dbConnect();
-        $req = $db->query('SELECT id, title, hero_link, excerpt,content, DATE_FORMAT(update_date, \'%d/%m/%Y à %Hh%imin%ss\') AS updated_date FROM post ORDER BY created_date DESC LIMIT 0, 5');
-
+        $req = parent::get_all();
         return $req;
     }
     // Get Post
     protected function getPost($postId)
     {
-        $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id, title, hero_link, excerpt, content, DATE_FORMAT(update_date, \'%d/%m/%Y à %Hh%imin%ss\') AS updated_date FROM post WHERE id = ?');
-        $req->execute(array($postId));
+        $req = parent::get_by_id($postId);
         $post = $req->fetch();
-
         return $post;
     }
     // Create post
     protected function create($title, $hero_link, $excerpt, $content)
     {
-        $db = $this->dbConnect();
+        $db = parent::dbConnect();
         $post = $db->prepare('INSERT INTO post(user_id, post_status_id, title, hero_link, excerpt, content,created_date,update_date) VALUES(1, 1, ?,?,?,?, NOW(),NOW())');
         $affectedLines = $post->execute(array($title, $hero_link, $excerpt, $content));
 
@@ -32,7 +28,7 @@ class PostsManager extends Manager
     //Modify post
     protected function update($post)
     {
-        $db = $this->dbConnect();
+        $db = parent::dbConnect();
         $sql = "UPDATE post SET ";
         $sql .= "post_status_id='" . "1" . "', ";
         $sql .= "title='" . $post['title'] . "', ";
@@ -50,7 +46,7 @@ class PostsManager extends Manager
     protected function delete($postId)
     {
         try {
-         $db = $this->dbConnect();
+         $db = parent::dbConnect();
           // sql to delete a record
           $delete = $db->prepare("DELETE FROM post WHERE id=?");
           // use exec() because no results are returned

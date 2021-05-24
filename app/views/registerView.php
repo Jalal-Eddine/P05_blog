@@ -1,6 +1,6 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="public/css/login.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-	<title>Document</title>
+	<title>Register</title>
 </head>
 
 <body>
@@ -24,7 +24,7 @@
 				</div>
 				<div class="welcome"><strong>Welcome,</strong> please Register</div>
 
-				<form class="form-horizontal login-form" action="index.php?action=createUser" method="post">
+				<form class="form-horizontal login-form" action="index.php?action=register" method="post">
 					<div class="form-group relative">
 						<input id="first_name" class="form-control input-lg" name="first_name" type="text" placeholder="First name" required>
 						<i class="fa fa-user"></i>
@@ -42,7 +42,7 @@
 						<i class="fa fa-"></i>
 					</div>
 					<div class="form-group relative password">
-						<input id="password" class="form-control input-lg" name="passeword" type="password" placeholder="Password" required>
+						<input id="password" class="form-control input-lg" name="password" type="password" placeholder="Password" required>
 						<i class="fa fa-lock"></i>
 					</div>
 					<div class="form-group">
