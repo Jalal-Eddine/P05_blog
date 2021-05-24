@@ -1,11 +1,12 @@
 <?php 
 if(isset($_SESSION['id'])){
 $connected = $_SESSION['id'] ;
+$role = $_SESSION['role'];
 }else{
     $connected= 0;
+    $role=0;
 }
 ?>
-
 <!DOCTYPE HTML>
 <html>
 
@@ -36,11 +37,11 @@ $connected = $_SESSION['id'] ;
             <ul class="links">
                 <li><a href="index.php">Home</a></li>
                 <li><a href="index.php?action=listPosts">List of blog Post</a></li>
-                <li><a href="index.php?action=postsManager">Posts Manager</a></li>
-                <li><a href="index.php?action=users">Users</a></li>
+                <?php if($role ==1){?>
+                <li><a href="index.php?action=dashboard">Admin Panel</a></li>
+                <?php }?>
             </ul>
             <ul class="actions stacked">
-                <li><a href="index.php?action=listPosts" class="button primary fit">Get Started</a></li>
                 <?php if(!$connected){ ?>
                 <li><a href="index.php?action=login" class="button fit">Log In</a></li>
                 <?php }else{ ?>

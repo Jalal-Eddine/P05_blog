@@ -1,11 +1,11 @@
 <?php ob_start(); ?>
-
 <!-- Banner -->
 <!-- Note: The "styleN" class below should match that of the header element. -->
-<section id="banner" class="style2">
+<section id="banner" class="style5">
     <div class="inner">
+    <a href="index.php?action=dashboard " >Return to Admin Panel</a>
         <span class="image">
-            <img src="images/pic07.jpg" alt="" />
+            <img src="public/images/pic07.jpg" alt="" />
         </span>
         <header class="major">
             <h1>Manage Posts</h1>

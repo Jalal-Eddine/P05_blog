@@ -24,19 +24,19 @@ class AdminController extends AdminManager
     {
         return password_verify($this->password, $this->hashed_password);
     }
-    public function is_admin()
-    {
-        if ($this->role == 1) {
-            return true;
-        } else {
-            return false;
-        }
-    }
     public function displayUsers()
     {
         if ($this->is_logged_in()) {
             $req = $this->getUsers();
             require('views/admin/adminUsersManager.php');
+        } else {
+            header("Location: index.php");
+        }
+    }
+    public function adminPanel()
+    {
+        if ($this->is_logged_in()) {
+            require('views/admin/adminPanel.php');
         } else {
             header("Location: index.php");
         }
@@ -110,7 +110,7 @@ class AdminController extends AdminManager
                     $this->set_user($user);
                     $this->create_session();
                     echo 'you\'re connected !';
-                    header("Location: index.php");
+                    header("Location: index.php?action=dashboard");
                 } else {
                     echo 'Wrong credentials 2 !';
                 }
