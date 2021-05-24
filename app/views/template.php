@@ -1,3 +1,11 @@
+<?php 
+if(isset($_SESSION['id'])){
+$connected = $_SESSION['id'] ;
+}else{
+    $connected= 0;
+}
+?>
+
 <!DOCTYPE HTML>
 <html>
 
@@ -17,7 +25,7 @@
 
         <!-- Header -->
         <header id="header" class="alt">
-            <a href="index.php" class="logo"><strong>MyBlog</strong> <span><?php if (isset($_SESSION['id']) AND isset($_SESSION['username'])){echo 'Bonjour ' . $_SESSION['username'];}?></span></a>
+            <a href="index.php" class="logo"><strong>MyBlog</strong> <span><?php if (isset($_SESSION['id']) AND isset($_SESSION['username'])){echo 'Bonjour ' . $_SESSION['first_name'];}?></span></a>
             <nav>
                 <a href="#menu">Menu</a>
             </nav>
@@ -33,8 +41,11 @@
             </ul>
             <ul class="actions stacked">
                 <li><a href="index.php?action=listPosts" class="button primary fit">Get Started</a></li>
+                <?php if(!$connected){ ?>
                 <li><a href="index.php?action=login" class="button fit">Log In</a></li>
+                <?php }else{ ?>
                 <li><a href="index.php?action=logout" class="button fit">Log Out</a></li>
+                <?php } ?>
             </ul>
         </nav>
 

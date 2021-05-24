@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="public/css/login.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-	<title>Document</title>
+	<title>LOGIN</title>
 </head>
 
 <body>
@@ -30,7 +30,7 @@
 						<i class="fa fa-user"></i>
 					</div>
 					<div class="form-group relative password">
-						<input id="login_password" class="form-control input-lg" name="passeword" type="password" placeholder="Password" required>
+						<input id="login_password" class="form-control input-lg" name="password" type="password" placeholder="Password" required>
 						<i class="fa fa-lock"></i>
 					</div>
 					<div class="form-group">

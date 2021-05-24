@@ -1,4 +1,3 @@
-<?php $title = 'Mon blog'; ?>
 <?php ob_start(); ?>
 
 <p><a href="index.php?action=listPosts">Retour à la liste des billets</a></p>
@@ -10,7 +9,7 @@
         <div class="inner">
             <header class="major">
                 <h1><?= htmlspecialchars($post['title']) ?></h1><br>
-                <em>le <?= $post['updated_date'] ?></em>
+                <em>le <?= $post['update_date'] ?></em>
             </header>
             <span class="image main"><img src="<?= $post['hero_link'] ?>" alt="" /></span>
             <p><?= nl2br(htmlspecialchars($post['content'])) ?></p>
@@ -24,6 +23,7 @@
                 <p><?= nl2br(strip_tags($comment['content'],$allowed_tags));?></p>
             <?php
             }
+            if(isset($_SESSION['id'])){
             ?>
             <!-- ... -->
             <form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
@@ -39,6 +39,11 @@
                     <input type="submit" />
                 </div>
             </form>
+            <?php 
+            }else{
+            ?>
+            <p><a href="index.php?action=register">Register</a>  to add a comment</p>
+            <?php } ?>
         </div>
     </section>
 </div>

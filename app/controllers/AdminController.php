@@ -1,66 +1,141 @@
-<?php 
+<?php
 
 require_once("models/AdminManager.php");
 
-class AdminController extends AdminManager {
+class AdminController extends AdminManager
+{
+    public $role;
+    public $first_name;
+    public $last_name;
+    public $username;
+    public $email;
+    protected $hashed_password;
+    protected $password;
+
+    public function full_name()
+    {
+        return $this->first_name . " " . $this->last_name;
+    }
+    protected function set_hashed_password()
+    {
+        $this->hashed_password = password_hash($this->password, PASSWORD_DEFAULT);
+    }
+    public function verify_password()
+    {
+        return password_verify($this->password, $this->hashed_password);
+    }
+    public function is_admin()
+    {
+        if ($this->role == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     public function displayUsers()
     {
-        $users = $this->getUsers();
-        require('views/adminUsersManager.php');
-    }
-    public function createUser()
-    {
-        if (!empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST['username']) && !empty($_POST['email']) && !empty($_POST['passeword'])) {
-            $affectedLines = $this->create($_POST['first_name'], $_POST['last_name'], $_POST['username'], $_POST['email'], $_POST['passeword']);
-            if ($affectedLines === false) {
-                throw new Exception('Impossible d\'ajouter un utilisateur !');
-            } else {
-                // header('Location: index.php?action=post&id=' . $postId);
-                echo "User created successfuly";
-                header("refresh:3;url=index.php?action=users");
-            }
+        if ($this->is_logged_in()) {
+            $req = $this->getUsers();
+            require('views/admin/adminUsersManager.php');
         } else {
-            // Autre exception
+            header("Location: index.php");
+        }
+    }
+
+    public function registerFields()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $this->first_name = $_POST['first_name'];
+            $this->last_name = $_POST['last_name'];
+            $this->username = $_POST['username'];
+            $this->email = $_POST['email'];
+            $this->password = $_POST['password'];
+            $this->set_hashed_password();
+        } else {
             require('views/registerView.php');
         }
     }
-    public function loginUser()
+    public function createUser()
     {
-        if (!empty($_POST['username']) && !empty($_POST['passeword'])){
-        $result = $this->getUser($_POST['username']);
-    
-        // Comparaison du pass envoyé via le formulaire avec la base
-        $isPasswordCorrect = password_verify($_POST['passeword'], $result['passeword']);
-    
-        if (!$result) {
-            echo 'Mauvais identifiant ou mot de passe !';
-        } else {
-            if ($isPasswordCorrect) {
-                session_start();
-                $_SESSION['id'] = $result['id'];
-                $_SESSION['username'] = $_POST['username'];
-                echo 'Vous êtes connecté !';
+        $this->registerFields();
+        if (!empty($this->first_name) && !empty($this->last_name) && !empty($this->username) && !empty($this->email) && !empty($this->hashed_password)) {
+            $affectedLines = $this->create($this->first_name, $this->last_name, $this->username, $this->email, $this->hashed_password);
+            if ($affectedLines === false) {
+                throw new Exception('Fill all the fields !');
             } else {
-                echo 'Mauvais identifiant ou mot de passe !';
+                echo "User created successfuly";
+                header("refresh:3;url=index.php?action=login");
             }
-         }
-            header("Location: index.php?action=listPosts");
+        } else {
+            echo "Please fill all the fields";
+        }
+    }
+    public function set_user($user)
+    {
+        $this->id = $user['id'];
+        $this->first_name = $user['first_name'];
+        $this->last_name = $user['last_name'];
+        $this->role = $user['user_role_id'];
+    }
+    public function create_session()
+    {
+        session_start();
+        $_SESSION['id'] = $this->id;
+        $_SESSION['username'] = $this->username;
+        $_SESSION['role'] = $this->role;
+        $_SESSION['first_name'] = $this->first_name;
+        $_SESSION['last_name'] = $this->last_name;
+    }
+    public function loginFields()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $this->username = $_POST['username'];
+            $this->password = $_POST['password'];
+        } else {
+            require('views/loginView.php');
+        }
+    }
+    public function login()
+    {
+        $this->loginFields();
+        if (!empty($this->username) && !empty($this->password)) {
+            $user = parent::get_by_username($this->username);
+            $this->hashed_password = $user['password'];
+            $isPasswordCorrect = $this->verify_password();
+            print_r($isPasswordCorrect);
+            if (!$user) {
+                echo 'wrong credentials 1!';
+            } else {
+                if ($isPasswordCorrect) {
+                    $this->set_user($user);
+                    $this->create_session();
+                    echo 'you\'re connected !';
+                    header("Location: index.php");
+                } else {
+                    echo 'Wrong credentials 2 !';
+                }
+            }
         }
         require('views/loginView.php');
     }
-    public function logout()
-     {
+    public function is_logged_in()
+    {
+        // return isset($this->admin_id);
         session_start();
-        
+        return isset($_SESSION['id']);
+    }
+    public function logout()
+    {
+        session_start();
         // Suppression des variables de session et de la session
         unset($_SESSION['id']);
         unset($_SESSION['username']);
+        unset($_SESSION['first_name']);
+        unset($_SESSION['last_name']);
+        unset($_SESSION['role']);
+        unset($this->id);
+        unset($this->username);
         session_destroy();
-        
-        // Suppression des cookies de connexion automatique
-        // setcookie('login', '');
-        // setcookie('pass_hache', '');
         header("Location: index.php?action=login");
-     }
-    
+    }
 }

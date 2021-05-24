@@ -7,13 +7,13 @@ $postController = new PostsController;
 $commentsController = new CommentsController;
 $adminController = new AdminController;
 
-try { // On essaie de faire des choses
+try { // we try to do something
     if (isset($_GET['action'])) {
-        if(!isset($_SERVER['HTTP_REFERER'])){
-            // redirect them to your desired location
-            header('location:index.php');
-            exit;
-        }
+        // if(!isset($_SERVER['HTTP_REFERER'])){
+        //     // redirect them to the homepage
+        //     header('location:index.php');
+        //     exit;
+        // }
         if ($_GET['action'] == 'listPosts') {
             $postController->listPosts();
         } elseif ($_GET['action'] == 'post') {
@@ -29,7 +29,7 @@ try { // On essaie de faire des choses
         } elseif ($_GET['action'] == 'deletePost') {
             $postController->deletePost();
         } elseif ($_GET['action'] == 'login') {
-            $adminController->loginUser();
+            $adminController->login();
         } elseif ($_GET['action'] == 'register') {
             $adminController->createUser();
         } elseif ($_GET['action'] == 'users') {
@@ -41,7 +41,7 @@ try { // On essaie de faire des choses
         // homePage();
         require('views/home.php');
     }
-} catch (Exception $e) { // S'il y a eu une erreur, alors...
+} catch (Exception $e) { // if there is an error 
     echo 'Erreur : ' . $e->getMessage();
     require('views/errorView.php');
 }

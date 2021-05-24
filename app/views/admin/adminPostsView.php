@@ -1,5 +1,3 @@
-<?php $title = 'Mon blog'; ?>
-
 <?php ob_start(); ?>
 
 <!-- Banner -->
@@ -44,4 +42,4 @@ $posts->closeCursor();
 ?>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require('views/template.php'); ?>
