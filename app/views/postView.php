@@ -1,12 +1,12 @@
 <?php ob_start(); ?>
 
-<p><a href="index.php?action=listPosts">Retour à la liste des billets</a></p>
 
 <div id="main" class="alt">
-
+    
     <!-- One -->
     <section id="one">
         <div class="inner">
+            <p><a href="index.php?action=listPosts">Return to posts list</a></p>
             <header class="major">
                 <h1><?= htmlspecialchars($post['title']) ?></h1><br>
                 <em>le <?= $post['update_date'] ?></em>

@@ -9,11 +9,11 @@ $adminController = new AdminController;
 
 try { // we try to do something
     if (isset($_GET['action'])) {
-        // if(!isset($_SERVER['HTTP_REFERER'])){
-        //     // redirect them to the homepage
-        //     header('location:index.php');
-        //     exit;
-        // }
+        if(!isset($_SERVER['HTTP_REFERER'])){
+            // redirect them to the homepage
+            header('location:index.php');
+            exit;
+        }
         if ($_GET['action'] == 'listPosts') {
             $postController->listPosts();
         } elseif ($_GET['action'] == 'post') {
@@ -36,7 +36,10 @@ try { // we try to do something
             $adminController->displayUsers();
         } elseif ($_GET['action'] == 'logout') {
             $adminController->logout();
+        }elseif($_GET['action'] == 'dashboard'){
+            $adminController->adminPanel();
         }
+        
     }else{
         // homePage();
         require('views/home.php');

@@ -9,7 +9,7 @@ session_start(); // On démarre la session AVANT toute chose
 								<h1>Hi, my name is Jalal Eddine</h1>
 							</header>
 							<div class="content">
-								<p>Jalal Eddine, le développeur qu’il vous faut !</p>
+								<p>The developer that you need !</p>
 								<ul class="actions">
 									<li><a href="index.php?action=listPosts" class="button next scrolly">Get Started</a></li>
 								</ul>
