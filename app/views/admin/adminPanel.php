@@ -19,7 +19,7 @@
     <div class="inner">
     <a href="index.php?action=postsManager" class="button primary large">Posts Manager</a>
     <a href="index.php?action=users" class="button primary large">Users</a>
-    <a href="index.php?action=logout" class="button primary large">Logout</a>
+    <a href="index.php" class="button primary large">Home Page</a>
     </div>
 </div>
 

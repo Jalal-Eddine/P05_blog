@@ -81,23 +81,23 @@ $role = $_SESSION['role'];
                         <div class="contact-method">
                             <span class="icon solid alt fa-envelope"></span>
                             <h3>Email</h3>
-                            <a href="#">information@untitled.tld</a>
+                            <a href="#">contact@gmail.com</a>
                         </div>
                     </section>
                     <section>
                         <div class="contact-method">
                             <span class="icon solid alt fa-phone"></span>
                             <h3>Phone</h3>
-                            <span>(000) 000-0000 x12387</span>
+                            <span>0621547892</span>
                         </div>
                     </section>
                     <section>
                         <div class="contact-method">
                             <span class="icon solid alt fa-home"></span>
                             <h3>Address</h3>
-                            <span>1234 Somewhere Road #5432<br />
-                                Nashville, TN 00000<br />
-                                United States of America</span>
+                            <span> 20 Rue xxxx <br />
+                                Creil<br />
+                                France</span>
                         </div>
                     </section>
                 </section>
@@ -107,14 +107,12 @@ $role = $_SESSION['role'];
         <footer id="footer">
             <div class="inner">
                 <ul class="icons">
-                    <li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
-                    <li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
-                    <li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-                    <li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-                    <li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+                    <li><a href="https://twitter.com/HabbaziJalal" class="icon brands alt fa-twitter" target="_blank><span class="label">Twitter</span></a></li>
+                    <li><a href="https://github.com/Jalal-Eddine" class="icon brands alt fa-github" target="_blank><span class="label">GitHub</span></a></li>
+                    <li><a href="https://www.linkedin.com/in/jalaleddine/" class="icon brands alt fa-linkedin-in" target="_blank><span class="label">LinkedIn</span></a></li>
                 </ul>
                 <ul class="copyright">
-                    <li>&copy; Untitled</li>
+                    <li>&copy; JalalEddine</li>
                     <li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
                 </ul>
             </div>
