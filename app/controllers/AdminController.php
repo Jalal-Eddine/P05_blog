@@ -26,7 +26,7 @@ class AdminController extends AdminManager
     }
     public function displayUsers()
     {
-        if ($this->is_logged_in()) {
+        if ($this->is_admin()) {
             $req = $this->getUsers();
             require('views/admin/adminUsersManager.php');
         } else {
@@ -35,7 +35,7 @@ class AdminController extends AdminManager
     }
     public function adminPanel()
     {
-        if ($this->is_logged_in()) {
+        if ($this->is_admin()) {
             require('views/admin/adminPanel.php');
         } else {
             header("Location: index.php");
@@ -104,15 +104,15 @@ class AdminController extends AdminManager
             $isPasswordCorrect = $this->verify_password();
             print_r($isPasswordCorrect);
             if (!$user) {
-                echo 'wrong credentials 1!';
+                echo 'Database error!';
             } else {
                 if ($isPasswordCorrect) {
                     $this->set_user($user);
                     $this->create_session();
                     echo 'you\'re connected !';
-                    header("Location: index.php?action=dashboard");
+                    header("Location: index.php");
                 } else {
-                    echo 'Wrong credentials 2 !';
+                    echo 'Wrong credentials !';
                 }
             }
         }
@@ -123,6 +123,16 @@ class AdminController extends AdminManager
         // return isset($this->admin_id);
         session_start();
         return isset($_SESSION['id']);
+    }
+    public function is_admin()
+    {
+        session_start();
+        $role = $_SESSION['role'];
+        if($role ==1) {
+            return true;
+        }else{
+            return false;
+        }
     }
     public function logout()
     {
@@ -136,6 +146,6 @@ class AdminController extends AdminManager
         unset($this->id);
         unset($this->username);
         session_destroy();
-        header("Location: index.php?action=login");
+        header("Location: index.php");
     }
 }
