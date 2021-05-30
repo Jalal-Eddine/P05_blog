@@ -64,7 +64,7 @@ class AdminController extends AdminManager
                 throw new Exception('Fill all the fields !');
             } else {
                 echo "User created successfuly";
-                header("refresh:3;url=index.php?action=login");
+                header("refresh:1;url=index.php?action=login");
             }
         } else {
             echo "Please fill all the fields";
@@ -116,7 +116,6 @@ class AdminController extends AdminManager
                 }
             }
         }
-        require('views/loginView.php');
     }
     public function is_logged_in()
     {

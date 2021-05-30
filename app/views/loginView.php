@@ -41,7 +41,7 @@
 			</div>
 
 			<h4 class="text-center">
-      <a target="_blank" href="index.php?action=register">
+      <a href="index.php?action=register">
         Register
       </a>
     </h4>

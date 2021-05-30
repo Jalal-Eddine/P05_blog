@@ -18,6 +18,7 @@ $role = $_SESSION['role'];
     <noscript>
         <link rel="stylesheet" href="public/css/noscript.css" />
     </noscript>
+
 </head>
 
 <body class="is-preload">
