@@ -4,6 +4,7 @@ require_once("models/Manager.php");
 class CommentManager extends Manager
 {
     static protected $table_name = "comment";
+    static protected $fVariable = "comment_status_id=";
     protected function get_id($postId)
     {
         $db = parent::dbConnect();
@@ -27,16 +28,10 @@ class CommentManager extends Manager
     }
     protected function update($status,$id)
     {
-        $db = parent::dbConnect();
-        $sql = "UPDATE comment SET comment_status_id=? WHERE id= ? ";
-        $stmt = $db->prepare($sql);
-        $stmt->execute(array($status,$id));
+        parent::update($status,$id);
     }
     protected function delete($id)
     {
-        $db = parent::dbConnect();
-        $sql = "DELETE FROM comment WHERE id= ? ";
-        $stmt = $db->prepare($sql);
-        $stmt->execute(array($id));
+        parent::delete($id);
     }
 }

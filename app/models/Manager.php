@@ -33,4 +33,23 @@ class Manager
     $conn= null;
     return $req;
   }
+  protected function update($status,$id)
+  {
+      $db = self::dbConnect();
+      $sql = "UPDATE " . static::$table_name;
+      $sql .= " SET " .static::$fVariable .$status;
+      $sql .= " WHERE id= " .$id;
+      $stmt = $db->prepare($sql);
+      $stmt->execute();
+      $db= null;
+  }
+  protected function delete($id)
+  {
+      $db = self::dbConnect();
+      $sql = "DELETE FROM " . static::$table_name;
+      $sql .= " WHERE id= " .$id;
+      $stmt = $db->prepare($sql);
+      $stmt->execute();
+      $db= null;
+  }
 }

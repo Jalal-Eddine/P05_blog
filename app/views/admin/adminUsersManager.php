@@ -26,7 +26,8 @@
                             <th>Last Name</th>
                             <th>Username</th>
                             <th>email</th>
-                            <th>Role</th>
+                            <th>Modify Role</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,11 +39,27 @@
                                 <td><?php echo $users['last_name'] ?></td>
                                 <td><?php echo $users['username'] ?></td>
                                 <td><?php echo $users['email'] ?></td>
-                                <td><?php if ($users['user_role_id'] == 1) {
-                                        echo 'admin';
-                                    } else {
-                                        echo 'user';
-                                    } ?></td>
+                                <td><?php if ($users['user_role_id'] == 1) { ?>
+                                        <form action="" method="post">
+                                            <input type="number" name="user_role" value="1" hidden>
+                                            <input type="number" name="id" value="<?php echo $users['id'] ?>" hidden>
+                                            <input type="submit" name="submit" value="admin">
+                                        </form>
+                                    <?php } else { ?>
+                                        <form action="" method="post">
+                                            <input type="number" name="user_role" value="2" hidden>
+                                            <input type="number" name="id" value="<?php echo $users['id'] ?>" hidden>
+                                            <input type="submit" name="submit" value="user">
+                                        </form>
+                                    <?php } ?>
+                                </td>
+                                <td>
+                                    <form action="" method="post">
+                                        <input type="number" name="delete_id" value="<?php echo $users['id'] ?>" hidden>
+                                        <input class="button primary" type="submit" name="delete" value="Delete">
+                                    </form>
+                                </td>
+                                
                             </tr>
                         <?php
                         };

@@ -24,10 +24,16 @@ class AdminController extends AdminManager
     {
         return password_verify($this->password, $this->hashed_password);
     }
-    public function displayUsers()
+    public function userManager()
     {
         if ($this->is_admin()) {
             $req = $this->getUsers();
+            if (isset($_POST['submit'])) {
+                self::updateUser();
+            }
+            if (isset($_POST['delete'])) {
+                self::deleteUser();
+            }
             require('views/admin/adminUsersManager.php');
         } else {
             header("Location: index.php");
@@ -146,5 +152,35 @@ class AdminController extends AdminManager
         unset($this->username);
         session_destroy();
         header("Location: index.php");
+    }
+    static public function userRole($role)
+    {
+        if ($role == 1) {
+            $newRole = 2;
+        } else {
+            $newRole = 1;
+        }
+        return $newRole;
+    }
+    static private function updateUser()
+    {
+        $role = $_POST['user_role'];
+        $id = $_POST['id'];
+        if (isset($role) && isset($id)) {
+            $newRole = self::userRole($role);
+            parent::update($newRole, $id);
+            $_POST['role'] = null;
+            $_POST['id'] = null;
+            header("location: index.php?action=users");
+        }
+    }
+    static private function deleteUser()
+    {
+        $id = $_POST['delete_id'];
+        if (isset($id)) {
+            parent::delete($id);
+            $_POST['delete_id'] = null;
+            header("location: index.php?action=users");
+        }
     }
 }
