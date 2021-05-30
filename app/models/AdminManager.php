@@ -4,6 +4,7 @@ require_once("models/Manager.php");
 class AdminManager extends Manager
 {
     static protected $table_name = "user";
+    static protected $fVariable = "user_role_id=";
 
     protected function getUsers()
     {
@@ -30,11 +31,12 @@ class AdminManager extends Manager
         $db=null;
         return $affectedLines;
     }
-    protected function set_admin_role($id){
-        $db = parent::dbConnect();
-        $req = $db->prepare('UPDATE user SET user_role_id = 1 WHERE id = ?');
-        $affectedLines = $req->execute(array($id));
-        $db=null;
-        return $affectedLines;
+    protected function update($status,$id)
+    {
+        parent::update($status,$id);
+    }
+    protected function delete($id)
+    {
+        parent::delete($id);
     }
 }

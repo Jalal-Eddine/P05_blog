@@ -26,7 +26,7 @@ class PostsManager extends Manager
         return $affectedLines;
     }
     //Modify post
-    protected function update($post)
+    protected function updatePost($post)
     {
         $db = parent::dbConnect();
         $sql = "UPDATE post SET ";

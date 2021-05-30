@@ -16,7 +16,7 @@ class CommentsController extends CommentManager
             self::updateComment();
         }
         if (isset($_POST['delete'])) {
-            self::deleteCommeent();
+            self::deleteComment();
         }
         require_once("views/admin/adminComments.php");
     }
@@ -60,7 +60,7 @@ class CommentsController extends CommentManager
             header("location: index.php?action=comments");
         }
     }
-    static private function deleteCommeent()
+    static private function deleteComment()
     {
         $id = $_POST['delete_id'];
         if (isset($id)) {

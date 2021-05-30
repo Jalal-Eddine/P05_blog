@@ -68,7 +68,7 @@ class PostsController extends PostsManager
                     $post['hero_link'] = $_POST['hero_link'] ?? '';
                     $post['excerpt'] = $_POST['excerpt'] ?? '';
                     $post['content'] = $_POST['content'] ?? '';
-                    $affectedLines = $this->update($post);
+                    $affectedLines = $this->updatePost($post);
                     if ($affectedLines === false) {
                         throw new Exception('Impossible de modifier l\'article !');
                     } else {

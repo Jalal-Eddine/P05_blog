@@ -35,7 +35,7 @@ try { // we try to do something
         } elseif ($_GET['action'] == 'register') {
             $adminController->createUser();
         } elseif ($_GET['action'] == 'users') {
-            $adminController->displayUsers();
+            $adminController->userManager();
         } elseif ($_GET['action'] == 'logout') {
             $adminController->logout();
         }elseif($_GET['action'] == 'dashboard'){
