@@ -1,7 +1,5 @@
 <?php ob_start(); ?>
 
-<!-- Banner -->
-<!-- Note: The "styleN" class below should match that of the header element. -->
 <section id="banner" class="style5">
     <div class="inner">
         <span class="image">
@@ -19,6 +17,7 @@
     <div class="inner">
     <a href="index.php?action=postsManager" class="button primary large">Posts Manager</a>
     <a href="index.php?action=users" class="button primary large">Users</a>
+    <a href="index.php?action=comments" class="button primary large">Manage Comments</a>
     <a href="index.php" class="button primary large">Home Page</a>
     </div>
 </div>

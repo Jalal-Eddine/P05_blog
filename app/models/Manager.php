@@ -2,7 +2,6 @@
 
 class Manager
 {
-  static protected $table_name = "";
   static protected $columns = [];
 
   static protected function dbConnect()

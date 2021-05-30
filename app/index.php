@@ -9,18 +9,20 @@ $adminController = new AdminController;
 
 try { // we try to do something
     if (isset($_GET['action'])) {
-        if(!isset($_SERVER['HTTP_REFERER'])){
-            // redirect them to the homepage
-            header('location:index.php');
-            exit;
-        }
+        // if(!isset($_SERVER['HTTP_REFERER'])){
+        //     // redirect them to the homepage
+        //     header('location:index.php');
+        //     exit;
+        // }
         if ($_GET['action'] == 'listPosts') {
             $postController->listPosts();
         } elseif ($_GET['action'] == 'post') {
             $postController->post();
         } elseif ($_GET['action'] == 'addComment') {
             $commentsController->addComment();
-        } elseif ($_GET['action'] == 'postsManager') {
+        } elseif ($_GET['action'] == 'comments') {
+            $commentsController->commentsManger();
+        }elseif ($_GET['action'] == 'postsManager') {
             $postController->postsManager();
         } elseif ($_GET['action'] == 'createPost') {
             $postController->createPost();

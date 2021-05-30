@@ -12,29 +12,32 @@
                 <em>le <?= $post['update_date'] ?></em>
             </header>
             <span class="image main"><img src="<?= $post['hero_link'] ?>" alt="" /></span>
-            <p><?= nl2br(htmlspecialchars($post['content'])) ?></p>
+            <?php $allowed_tags = '<div><img><h1><h2><p><br><strong><em><ul><li>'; ?>
+            <?= nl2br(strip_tags($post['content'],$allowed_tags)) ?>
             <h2>Commentaires</h2>
             <?php
             while ($comment = $comments->fetch()) {
+                if($comment['comment_status_id']==1){
             ?>
                 <?php $allowed_tags = '<div><img><h1><h2><p><br><strong><em><ul><li>'; ?>
-                <p><strong>commented</strong> le <?= $comment['comment_date'] ?></p>
+                <p>commented le <?= $comment['comment_date'] ?></p>
                 <h3><?= nl2br(strip_tags($comment['title'],$allowed_tags)); ?></h3>
                 <p><?= nl2br(strip_tags($comment['content'],$allowed_tags));?></p>
             <?php
+            }
             }
             if(isset($_SESSION['id'])){
             ?>
             <!-- ... -->
             <form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
                 <div>
-                    <label for="title">Title</label><br />
+                    <label for="title">Title</label>
                     <input type="text" id="title" name="title" />
-                </div>
+                </div><br />
                 <div>
-                    <label for="content">Commentaire</label><br />
+                    <label for="content">Commentaire</label>
                     <textarea id="content" name="content"></textarea>
-                </div>
+                </div><br />
                 <div>
                     <input type="submit" />
                 </div>
