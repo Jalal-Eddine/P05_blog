@@ -3,8 +3,8 @@ require_once("models/Manager.php");
 
 class CommentManager extends Manager
 {
-    static protected $table_name = "comment";
-    static protected $fVariable = "comment_status_id=";
+    protected static  $table_name = "comment";
+    protected static  $fVariable = "comment_status_id=";
     protected function get_id($postId)
     {
         $db = parent::dbConnect();
@@ -18,19 +18,19 @@ class CommentManager extends Manager
         $comments = parent::get_all();
         return $comments;
     }
-    protected function create($postId, $title, $content)
+    protected function create($postId, $title, $content, $userId)
     {
         $db = parent::dbConnect();
-        $comments = $db->prepare('INSERT INTO comment(post_id, title, content, user_id,comment_status_id, created_date) VALUES(?, ?, ?,1,2, NOW())');
-        $affectedLines = $comments->execute(array($postId, $title, $content));
+        $comments = $db->prepare('INSERT INTO comment(post_id, title, content, user_id,comment_status_id, created_date) VALUES(?, ?, ?,?,2, NOW())');
+        $affectedLines = $comments->execute(array($postId, $title, $content, $userId));
 
         return $affectedLines;
     }
-    protected function update($status,$id)
+    static protected function update($status, $id)
     {
-        parent::update($status,$id);
+        parent::update($status, $id);
     }
-    protected function delete($id)
+    static protected function delete($id)
     {
         parent::delete($id);
     }

@@ -40,7 +40,7 @@ class PostsController extends PostsManager
         session_start();
         if ($_SESSION['role'] == 1) {
             if (!empty($_POST['title']) && !empty($_POST['hero_link']) && !empty($_POST['excerpt']) && !empty($_POST['content'])) {
-                $affectedLines = $this->create($_POST['title'], $_POST['hero_link'], $_POST['excerpt'], $_POST['content']);
+                $affectedLines = $this->create($_SESSION['id'], $_POST['title'], $_POST['hero_link'], $_POST['excerpt'], $_POST['content']);
                 if ($affectedLines === false) {
                     throw new Exception('Impossible d\'ajouter l\'article !');
                 } else {

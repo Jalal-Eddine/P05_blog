@@ -1,5 +1,5 @@
 <?php
-require_once("models/Manager.php"); 
+require_once("models/Manager.php");
 
 class PostsManager extends Manager
 {
@@ -17,11 +17,11 @@ class PostsManager extends Manager
         return $post;
     }
     // Create post
-    protected function create($title, $hero_link, $excerpt, $content)
+    protected function create($userId, $title, $hero_link, $excerpt, $content)
     {
         $db = parent::dbConnect();
-        $post = $db->prepare('INSERT INTO post(user_id, post_status_id, title, hero_link, excerpt, content,created_date,update_date) VALUES(1, 1, ?,?,?,?, NOW(),NOW())');
-        $affectedLines = $post->execute(array($title, $hero_link, $excerpt, $content));
+        $post = $db->prepare('INSERT INTO post(user_id, post_status_id, title, hero_link, excerpt, content,created_date,update_date) VALUES(?, 1, ?,?,?,?, NOW(),NOW())');
+        $affectedLines = $post->execute(array($userId, $title, $hero_link, $excerpt, $content));
 
         return $affectedLines;
     }
@@ -40,20 +40,19 @@ class PostsManager extends Manager
         $sql .= "LIMIT 1";
         $stmt = $db->prepare($sql);
         $stmt->execute();
-
     }
     // Delete Post
-    protected function delete($postId)
+    static protected function delete($postId)
     {
         try {
-         $db = parent::dbConnect();
-          // sql to delete a record
-          $delete = $db->prepare("DELETE FROM post WHERE id=?");
-          // use exec() because no results are returned
-          $delete->execute(array($postId));
-          echo "Record deleted successfully";
-        } catch(PDOException $e) {
-          echo $e->getMessage();
+            $db = parent::dbConnect();
+            // sql to delete a record
+            $delete = $db->prepare("DELETE FROM post WHERE id=?");
+            // use exec() because no results are returned
+            $delete->execute(array($postId));
+            echo "Record deleted successfully";
+        } catch (PDOException $e) {
+            echo $e->getMessage();
         }
     }
 }

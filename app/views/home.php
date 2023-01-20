@@ -1,12 +1,12 @@
 <?php
 session_start();
-if(isset($_SESSION['id'])){
-	$connected = $_SESSION['id'] ;
+if (isset($_SESSION['id'])) {
+	$connected = $_SESSION['id'];
 	$role = $_SESSION['role'];
-	}else{
-		$connected= 0;
-		$role=0;
-	}
+} else {
+	$connected = 0;
+	$role = 0;
+}
 ?>
 <?php ob_start(); ?>
 <!-- Banner -->
@@ -38,30 +38,30 @@ if(isset($_SESSION['id'])){
 				<img src="images/pic02.jpg" alt="" />
 			</span>
 			<header class="major">
-				<h3><a href="https://jalaleddine.xyz/resume" class="link" target="_blank">My Resume</a></h3>
+				<h3><a href="https://jalaleddine.netlify.app/resume" class="link" target="_blank">My Resume</a></h3>
 				<p>Know more about me</p>
 			</header>
 		</article>
-		<?php if($role ==1){?>
-		<article>
-			<span class="image">
-				<img src="images/pic03.jpg" alt="" />
-			</span>
-			<header class="major">
-				<h3><a href="index.php?action=dashboard" class="link">Admin Panel</a></h3>
-				<p>Manage blog posts</p>
-			</header>
-		</article>
-		<article>
-			<span class="image">
-				<img src="images/pic04.jpg" alt="" />
-			</span>
-			<header class="major">
-				<h3><a href="index.php?action=users" class="link">Users</a></h3>
-				<p>Manage Users</p>
-			</header>
-		</article>
-		<?php }?>
+		<?php if ($role == 1) { ?>
+			<article>
+				<span class="image">
+					<img src="images/pic03.jpg" alt="" />
+				</span>
+				<header class="major">
+					<h3><a href="index.php?action=dashboard" class="link">Admin Panel</a></h3>
+					<p>Manage blog posts</p>
+				</header>
+			</article>
+			<article>
+				<span class="image">
+					<img src="images/pic04.jpg" alt="" />
+				</span>
+				<header class="major">
+					<h3><a href="index.php?action=users" class="link">Users</a></h3>
+					<p>Manage Users</p>
+				</header>
+			</article>
+		<?php } ?>
 	</section>
 </div>
 

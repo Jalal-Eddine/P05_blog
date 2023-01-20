@@ -24,7 +24,8 @@ class CommentsController extends CommentManager
     {
         if (isset($_GET['id']) && $_GET['id'] > 0) {
             if (!empty($_POST['title']) && !empty($_POST['content'])) {
-                $affectedLines = $this->create($_GET['id'], $_POST['title'], $_POST['content']);
+                session_start();
+                $affectedLines = $this->create($_GET['id'], $_POST['title'], $_POST['content'], $_SESSION['id']);
                 if ($affectedLines === false) {
                     throw new Exception('Impossible to add a comment !');
                 } else {

@@ -1,5 +1,5 @@
 <?php
-require_once("models/Manager.php"); 
+require_once("models/Manager.php");
 
 class AdminManager extends Manager
 {
@@ -19,7 +19,7 @@ class AdminManager extends Manager
         $req = $db->prepare('SELECT * FROM user WHERE username = :username');
         $req->execute(array('username' => $username));
         $result = $req->fetch();
-        $db=null;
+        $db = null;
         return $result;
     }
     // CREATE USER
@@ -28,14 +28,14 @@ class AdminManager extends Manager
         $db = parent::dbConnect();
         $req = $db->prepare('INSERT INTO user(user_role_id, first_name, last_name, username, email, password, inscription_date) VALUES(2,?,?,?,?,?,NOW())');
         $affectedLines = $req->execute(array($first_name, $last_name, $username, $email, $hashed__password));
-        $db=null;
+        $db = null;
         return $affectedLines;
     }
-    protected function update($status,$id)
+    static protected function update($status, $id)
     {
-        parent::update($status,$id);
+        parent::update($status, $id);
     }
-    protected function delete($id)
+    static protected function delete($id)
     {
         parent::delete($id);
     }

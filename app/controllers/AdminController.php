@@ -108,7 +108,6 @@ class AdminController extends AdminManager
             $user = parent::get_by_username($this->username);
             $this->hashed_password = $user['password'];
             $isPasswordCorrect = $this->verify_password();
-            print_r($isPasswordCorrect);
             if (!$user) {
                 echo 'Database error!';
             } else {
@@ -133,9 +132,9 @@ class AdminController extends AdminManager
     {
         session_start();
         $role = $_SESSION['role'];
-        if($role ==1) {
+        if ($role == 1) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
