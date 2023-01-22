@@ -9,19 +9,19 @@
             <p><a href="index.php?action=listPosts">Return to posts list</a></p>
             <header class="major">
                 <h1><?= htmlspecialchars($post['title']) ?></h1><br>
-                <em>le <?= $post['update_date'] ?></em><br>
+                <em>date: <?= $post['update_date'] ?></em><br>
                 <em>by <?= $post['first_name'] . " " . $post['last_name']  ?></em>
             </header>
             <span class="image main"><img src="<?= $post['hero_link'] ?>" alt="" /></span>
             <?php $allowed_tags = '<div><img><h1><h2><p><br><strong><em><ul><li>'; ?>
             <?= nl2br(strip_tags($post['content'], $allowed_tags)) ?>
-            <h2>Commentaires</h2>
+            <h2>Comments</h2>
             <?php
             while ($comment = $comments->fetch()) {
                 if ($comment['comment_status_id'] == 1) {
             ?>
                     <?php $allowed_tags = '<div><img><h1><h2><p><br><strong><em><ul><li>'; ?>
-                    <p>commented le <?= $comment['comment_date'] ?></p>
+                    <p>commented the <?= $comment['comment_date'] ?></p>
                     <h3><?= nl2br(strip_tags($comment['title'], $allowed_tags)); ?></h3>
                     <p><?= nl2br(strip_tags($comment['content'], $allowed_tags)); ?></p>
                 <?php
@@ -36,7 +36,7 @@
                         <input type="text" id="title" name="title" />
                     </div><br />
                     <div>
-                        <label for="content">Commentaire</label>
+                        <label for="content">Comment</label>
                         <textarea id="content" name="content"></textarea>
                     </div><br />
                     <div>
