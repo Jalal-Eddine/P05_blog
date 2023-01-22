@@ -68,6 +68,7 @@ class PostsController extends PostsManager
                     $post['hero_link'] = $_POST['hero_link'] ?? '';
                     $post['excerpt'] = $_POST['excerpt'] ?? '';
                     $post['content'] = $_POST['content'] ?? '';
+                    $post['update_date'] =  date('Y-m-d H:i:s');;
                     $affectedLines = $this->updatePost($post);
                     if ($affectedLines === false) {
                         throw new Exception('Impossible de modifier l\'article !');

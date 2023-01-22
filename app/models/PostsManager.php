@@ -50,7 +50,7 @@ class PostsManager extends Manager
         $sql .= "hero_link='" . $post['hero_link'] . "', ";
         $sql .= "excerpt='" . $post['excerpt'] . "', ";
         $sql .= "content='" . $post['content'] . "', ";
-        $sql .= "update_date='" . "NOW()" . "' ";
+        $sql .= "update_date='" . $post['update_date'] . "' ";
         $sql .= "WHERE id='" . $post['id'] . "' ";
         $sql .= "LIMIT 1";
         $stmt = $db->prepare($sql);
