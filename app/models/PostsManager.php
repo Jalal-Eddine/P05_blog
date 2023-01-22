@@ -4,19 +4,33 @@ require_once("models/Manager.php");
 class PostsManager extends Manager
 {
     static protected $table_name = "post";
+    // GET ALL POSTS
     protected function getPosts()
     {
         $req = parent::get_all();
         return $req;
     }
-    // Get Post
+    // GET A POST
     protected function getPost($postId)
     {
-        $req = parent::get_by_id($postId);
+        $conn = parent::dbConnect();
+        $sql = "SELECT post.*, user.first_name, user.last_name FROM user LEFT JOIN post ON user.id = post.user_id";
+        $sql .= " WHERE post.id= " . $postId;
+        $req = $conn->prepare($sql);
+        $req->execute();
+        $conn = null;
         $post = $req->fetch();
         return $post;
     }
-    // Create post
+    // GET Authors
+    protected function getAuthors()
+    {
+        self::$table_name = "user";
+        $req = parent::get_all();
+        self::$table_name = "post";
+        return $req;
+    }
+    // CREATE POST
     protected function create($userId, $title, $hero_link, $excerpt, $content)
     {
         $db = parent::dbConnect();
@@ -25,23 +39,24 @@ class PostsManager extends Manager
 
         return $affectedLines;
     }
-    //Modify post
+    // MODIFY POST
     protected function updatePost($post)
     {
         $db = parent::dbConnect();
         $sql = "UPDATE post SET ";
+        $sql .= "user_id='" . $post['user_id'] . "', ";
         $sql .= "post_status_id='" . "1" . "', ";
         $sql .= "title='" . $post['title'] . "', ";
         $sql .= "hero_link='" . $post['hero_link'] . "', ";
         $sql .= "excerpt='" . $post['excerpt'] . "', ";
         $sql .= "content='" . $post['content'] . "', ";
-        $sql .= "update_date='" . "NOW()" . "' ";
+        $sql .= "update_date='" . $post['update_date'] . "' ";
         $sql .= "WHERE id='" . $post['id'] . "' ";
         $sql .= "LIMIT 1";
         $stmt = $db->prepare($sql);
         $stmt->execute();
     }
-    // Delete Post
+    // DELETE POST
     static protected function delete($postId)
     {
         try {

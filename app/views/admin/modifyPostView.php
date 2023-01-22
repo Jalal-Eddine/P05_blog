@@ -1,6 +1,5 @@
 <?php $title = 'Mon blog'; ?>
 <?php ob_start(); ?>
-<?php $data = $posts->fetch(); ?>
 <section id="banner" class="style5">
     <div class="inner">
         <a href="index.php?action=listPosts ">Return to Posts list</a>
@@ -17,22 +16,34 @@
 </section>
 <div id="main" class="alt">
     <section class="inner">
-        <form action="index.php?action=modifyPost&id=<?php echo $data['id']; ?>" method="post">
+        <form action="index.php?action=modifyPost&id=<?php echo $post['id']; ?>" method="post">
             <div>
                 <label for="title">Title</label>
-                <input type="text" id="title" name="title" value="<?php echo $data['title']; ?>" />
+                <input type="text" id="title" name="title" value="<?php echo $post['title']; ?>" />
+            </div><br />
+            <div>
+                <label for="author">Author</label>
+                <select name="author" id="author">
+                    <option value="<?php echo $post['user_id']; ?>"><?php echo $post['first_name'] . " " . $post['last_name']; ?></option>
+                    <?php while ($author = $authors->fetch()) {
+                        if ($author['id'] != $post['user_id']) { ?>
+                            <option value="<?php echo $author['id']; ?>"><?php echo $author['first_name'] . " " . $author['last_name']; ?></option>
+                    <?php
+                        }
+                    } ?>
+                </select>
             </div><br />
             <div>
                 <label for="hero_link">Hero link</label>
-                <input type="text" id="hero_link" name="hero_link" value="<?php echo $data['hero_link'] ?>" />
+                <input type="text" id="hero_link" name="hero_link" value="<?php echo $post['hero_link'] ?>" />
             </div><br />
             <div>
                 <label for="excerpt">Excerpt</label>
-                <textarea id="excerpt" name="excerpt" rows="5"><?php echo $data['excerpt'] ?></textarea>
+                <textarea id="excerpt" name="excerpt" rows="5"><?php echo $post['excerpt'] ?></textarea>
             </div><br />
             <div>
                 <label for="content">Content</label>
-                <textarea id="mytextarea" name="content" rows="15"><?php echo $data['content'] ?></textarea>
+                <textarea id="mytextarea" name="content" rows="15"><?php echo $post['content'] ?></textarea>
             </div><br />
             <div>
                 <input type="submit" />
