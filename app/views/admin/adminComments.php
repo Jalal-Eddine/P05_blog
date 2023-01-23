@@ -34,27 +34,27 @@
                         while ($comment = $comments->fetch()) {
                         ?>
                             <tr>
-                                <td><?php echo $comment['id'] ?></td>
-                                <td><?php echo $comment['title'] ?></td>
-                                <td><?php echo $comment['content'] ?></td>
-                                <td><?php echo $comment['created_date'] ?></td>
-                                <td><?php if ($comment['comment_status_id'] == 1) { ?>
+                                <td><?php echo htmlspecialchars($comment['id']) ?></td>
+                                <td><?php echo htmlspecialchars($comment['title']) ?></td>
+                                <td><?php echo htmlspecialchars($comment['content']) ?></td>
+                                <td><?php echo htmlspecialchars($comment['created_date']) ?></td>
+                                <td><?php if (htmlspecialchars($comment['comment_status_id']) == 1) { ?>
                                         <form action="" method="post">
                                             <input type="number" name="status" value="1" hidden>
-                                            <input type="number" name="id" value="<?php echo $comment['id'] ?>" hidden>
+                                            <input type="number" name="id" value="<?php echo htmlspecialchars($comment['id']) ?>" hidden>
                                             <input type="submit" name="submit" value="Unapprove">
                                         </form>
                                     <?php } else { ?>
                                         <form action="" method="post">
                                             <input type="number" name="status" value="2" hidden>
-                                            <input type="number" name="id" value="<?php echo $comment['id'] ?>" hidden>
+                                            <input type="number" name="id" value="<?php echo htmlspecialchars($comment['id']) ?>" hidden>
                                             <input type="submit" name="submit" value="Approve">
                                         </form>
                                     <?php } ?>
                                 </td>
                                 <td>
                                     <form action="" method="post">
-                                        <input type="number" name="delete_id" value="<?php echo $comment['id'] ?>" hidden>
+                                        <input type="number" name="delete_id" value="<?php echo htmlspecialchars($comment['id']) ?>" hidden>
                                         <input class="button primary" type="submit" name="delete" value="Delete">
                                     </form>
                                 </td>

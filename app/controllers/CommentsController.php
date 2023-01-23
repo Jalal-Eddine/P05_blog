@@ -11,7 +11,7 @@ class CommentsController extends CommentManager
     }
     public function commentsManger()
     {
-        $comments = parent::get_all();
+        $comments = parent::get_all_comments();
         if (isset($_POST['submit'])) {
             self::updateComment();
         }
