@@ -1,17 +1,17 @@
-<?php 
-if(isset($_SESSION['id'])){
-$connected = $_SESSION['id'] ;
-$role = $_SESSION['role'];
-}else{
-    $connected= 0;
-    $role=0;
+<?php
+if (isset($_SESSION['id'])) {
+    $connected = $_SESSION['id'];
+    $role = $_SESSION['role'];
+} else {
+    $connected = 0;
+    $role = 0;
 }
 ?>
 <!DOCTYPE HTML>
 <html>
 
 <head>
-    <title>Forty by HTML5 UP</title>
+    <title>Blog post OC-Project 05</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="public/css/main.css" />
@@ -27,7 +27,9 @@ $role = $_SESSION['role'];
 
         <!-- Header -->
         <header id="header" class="alt">
-            <a href="index.php" class="logo"><strong>MyBlog</strong> <span><?php if (isset($_SESSION['id']) AND isset($_SESSION['username'])){echo 'Bonjour ' . $_SESSION['first_name'];}?></span></a>
+            <a href="index.php" class="logo"><strong>MyBlog</strong> <span><?php if (isset($_SESSION['id']) and isset($_SESSION['username'])) {
+                                                                                echo 'Bonjour ' . $_SESSION['first_name'];
+                                                                            } ?></span></a>
             <nav>
                 <a href="#menu">Menu</a>
             </nav>
@@ -38,15 +40,15 @@ $role = $_SESSION['role'];
             <ul class="links">
                 <li><a href="index.php">Home</a></li>
                 <li><a href="index.php?action=listPosts">List of blog Post</a></li>
-                <?php if($role ==1){?>
-                <li><a href="index.php?action=dashboard">Admin Panel</a></li>
-                <?php }?>
+                <?php if ($role == 1) { ?>
+                    <li><a href="index.php?action=dashboard">Admin Panel</a></li>
+                <?php } ?>
             </ul>
             <ul class="actions stacked">
-                <?php if(!$connected){ ?>
-                <li><a href="index.php?action=login" class="button fit">Log In</a></li>
-                <?php }else{ ?>
-                <li><a href="index.php?action=logout" class="button fit">Log Out</a></li>
+                <?php if (!$connected) { ?>
+                    <li><a href="index.php?action=login" class="button fit">Log In</a></li>
+                <?php } else { ?>
+                    <li><a href="index.php?action=logout" class="button fit">Log Out</a></li>
                 <?php } ?>
             </ul>
         </nav>
@@ -56,7 +58,7 @@ $role = $_SESSION['role'];
         <section id="contact">
             <div class="inner">
                 <section>
-                    <form method="post" action="#">
+                    <form method="post" action="mailer.php">
                         <div class="fields">
                             <div class="field half">
                                 <label for="name">Name</label>
@@ -108,9 +110,9 @@ $role = $_SESSION['role'];
         <footer id="footer">
             <div class="inner">
                 <ul class="icons">
-                    <li><a href="https://twitter.com/HabbaziJalal" class="icon brands alt fa-twitter" target="_blank><span class="label">Twitter</span></a></li>
-                    <li><a href="https://github.com/Jalal-Eddine" class="icon brands alt fa-github" target="_blank><span class="label">GitHub</span></a></li>
-                    <li><a href="https://www.linkedin.com/in/jalaleddine/" class="icon brands alt fa-linkedin-in" target="_blank><span class="label">LinkedIn</span></a></li>
+                    <li><a href="https://twitter.com/HabbaziJalal" class="icon brands alt fa-twitter" target="_blank><span class=" label">Twitter</span></a></li>
+                    <li><a href="https://github.com/Jalal-Eddine" class="icon brands alt fa-github" target="_blank><span class=" label">GitHub</span></a></li>
+                    <li><a href="https://www.linkedin.com/in/jalaleddine/" class="icon brands alt fa-linkedin-in" target="_blank><span class=" label">LinkedIn</span></a></li>
                 </ul>
                 <ul class="copyright">
                     <li>&copy; JalalEddine</li>
