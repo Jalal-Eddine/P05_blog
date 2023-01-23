@@ -8,7 +8,7 @@ class AdminManager extends Manager
 
     protected function getUsers()
     {
-        $req = parent::get_all();
+        $req = parent::get_all("inscription_date");
         return $req;
     }
     // GET USER FOR CONNECTION

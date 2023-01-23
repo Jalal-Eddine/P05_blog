@@ -38,9 +38,6 @@ class Admin extends Manager {
 
   protected function create() {
     $args = $_POST['admin'];
-    if(){
-
-    }
     $this->set_hashed_password();
     return parent::create();
   }
@@ -124,5 +121,3 @@ class Admin extends Manager {
   }
 
 }
-
-?>

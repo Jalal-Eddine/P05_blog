@@ -45,6 +45,6 @@ try {
         require('views/home.php');
     }
 } catch (Exception $e) { // if there is an error 
-    echo 'Erreur : ' . $e->getMessage();
+    echo 'Erreur : ' . htmlspecialchars($e->getMessage());
     require('views/errorView.php');
 }

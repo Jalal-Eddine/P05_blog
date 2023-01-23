@@ -7,7 +7,7 @@ class PostsManager extends Manager
     // GET ALL POSTS
     protected function getPosts()
     {
-        $req = parent::get_all();
+        $req = parent::get_all("created_date");
         return $req;
     }
     // GET A POST
@@ -67,7 +67,7 @@ class PostsManager extends Manager
             $delete->execute(array($postId));
             echo "Record deleted successfully";
         } catch (PDOException $e) {
-            echo $e->getMessage();
+            echo htmlspecialchars($e->getMessage());
         }
     }
 }

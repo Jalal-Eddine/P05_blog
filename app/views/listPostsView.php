@@ -26,18 +26,18 @@ while ($data = $posts->fetch()) {
     <!-- Two -->
     <section id="two" class="spotlights">
         <section>
-            <a href="index.php?action=post&id=<?= $data['id'] ?>" class="image">
-                <img src="<?= $data['hero_link'] ?>" alt="" data-position="center center" />
+            <a href="index.php?action=post&id=<?= htmlspecialchars($data['id']) ?>" class="image">
+                <img src="<?= htmlspecialchars($data['hero_link']) ?>" alt="" data-position="center center" />
             </a>
             <div class="content">
                 <div class="inner">
                     <header class="major">
-                        <h3><a href="index.php?action=post&id=<?= $data['id'] ?>"><?= htmlspecialchars($data['title']) ?></a></h3><br>
-                        <em>le <?= $data['update_date'] ?></em>
+                        <h3><a href="index.php?action=post&id=<?= htmlspecialchars($data['id']) ?>"><?= htmlspecialchars($data['title']) ?></a></h3><br>
+                        <em>le <?= htmlspecialchars($data['update_date']) ?></em>
                     </header>
                     <p><?= nl2br(htmlspecialchars($data['excerpt'])) ?></p>
                     <ul class="actions">
-                        <li><a href="index.php?action=post&id=<?= $data['id'] ?>" class="button">Learn more</a></li>
+                        <li><a href="index.php?action=post&id=<?= htmlspecialchars($data['id']) ?>" class="button">Learn more</a></li>
                     </ul>
                 </div>
             </div>

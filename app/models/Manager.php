@@ -16,10 +16,11 @@ class Manager
     // echo "Connected successfully";
     return $conn;
   }
-  static public function get_all()
+  static public function get_all($created_date)
   {
     $conn = self::dbConnect();
     $sql = "SELECT * FROM " . static::$table_name;
+    $sql .= " ORDER BY " . $created_date . " DESC";
     $req = $conn->prepare($sql);
     $req->execute();
     $conn = null;

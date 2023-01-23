@@ -13,9 +13,9 @@ class CommentManager extends Manager
 
         return $comments;
     }
-    static public function get_ll()
+    static public function get_all_comments()
     {
-        $comments = parent::get_all();
+        $comments = parent::get_all("created_date");
         return $comments;
     }
     protected function create($postId, $title, $content, $userId)

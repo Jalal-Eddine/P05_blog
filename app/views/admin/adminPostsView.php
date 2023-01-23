@@ -3,7 +3,7 @@
 <!-- Note: The "styleN" class below should match that of the header element. -->
 <section id="banner" class="style5">
     <div class="inner">
-    <a href="index.php?action=dashboard " >Return to Admin Panel</a>
+        <a href="index.php?action=dashboard ">Return to Admin Panel</a>
         <span class="image">
             <img src="public/images/pic07.jpg" alt="" />
         </span>
@@ -25,12 +25,12 @@ while ($data = $posts->fetch()) {
             <div class="content">
                 <div class="inner">
                     <header class="major">
-                        <h3><a href="index.php?action=post&id=<?= $data['id'] ?>"><?= htmlspecialchars($data['title']) ?></a></h3>
+                        <h3><a href="index.php?action=post&id=<?= htmlspecialchars($data['id']) ?>"><?= htmlspecialchars($data['title']) ?></a></h3>
                     </header>
                     <ul class="actions">
-                        <li><a href="index.php?action=post&id=<?= $data['id'] ?>" class="button">Display</a></li>
-                        <li><a href="index.php?action=modifyPost&id=<?= $data['id'] ?>" class="button">Modify</a></li>
-                        <li><a href="index.php?action=deletePost&id=<?= $data['id'] ?>" class="button">Delete</a></li>
+                        <li><a href="index.php?action=post&id=<?= htmlspecialchars($data['id']) ?>" class="button">Display</a></li>
+                        <li><a href="index.php?action=modifyPost&id=<?= htmlspecialchars($data['id']) ?>" class="button">Modify</a></li>
+                        <li><a href="index.php?action=deletePost&id=<?= htmlspecialchars($data['id']) ?>" class="button">Delete</a></li>
                     </ul>
                 </div>
             </div>
