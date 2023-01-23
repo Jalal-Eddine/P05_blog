@@ -1,0 +1,18 @@
+{
+    "name": "jalaleddine/app",
+    "description": "OC: project 5 - blog post",
+    "autoload": {
+        "psr-4": {
+            "Jalaleddine\\App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "JalalEddine"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "phpmailer/phpmailer": "^6.7"
+    }
+}

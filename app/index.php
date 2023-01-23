@@ -7,7 +7,7 @@ $postController = new PostsController;
 $commentsController = new CommentsController;
 $adminController = new AdminController;
 
-try { // we try to do something
+try {
     if (isset($_GET['action'])) {
         // if(!isset($_SERVER['HTTP_REFERER'])){
         //     // redirect them to the homepage
@@ -22,7 +22,7 @@ try { // we try to do something
             $commentsController->addComment();
         } elseif ($_GET['action'] == 'comments') {
             $commentsController->commentsManger();
-        }elseif ($_GET['action'] == 'postsManager') {
+        } elseif ($_GET['action'] == 'postsManager') {
             $postController->postsManager();
         } elseif ($_GET['action'] == 'createPost') {
             $postController->createPost();
@@ -38,12 +38,10 @@ try { // we try to do something
             $adminController->userManager();
         } elseif ($_GET['action'] == 'logout') {
             $adminController->logout();
-        }elseif($_GET['action'] == 'dashboard'){
+        } elseif ($_GET['action'] == 'dashboard') {
             $adminController->adminPanel();
         }
-        
-    }else{
-        // homePage();
+    } else {
         require('views/home.php');
     }
 } catch (Exception $e) { // if there is an error 
