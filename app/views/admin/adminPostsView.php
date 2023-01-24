@@ -25,12 +25,12 @@ while ($data = $posts->fetch()) {
             <div class="content">
                 <div class="inner">
                     <header class="major">
-                        <h3><a href="index.php?action=post&id=<?= htmlspecialchars($data['id']) ?>"><?= htmlspecialchars($data['title']) ?></a></h3>
+                        <h3><a href="index.php?action=post&id=<?= htmlspecialchars($data['id'], ENT_COMPAT, 'UTF-8') ?>"><?= htmlspecialchars($data['title'], ENT_COMPAT, 'UTF-8') ?></a></h3>
                     </header>
                     <ul class="actions">
-                        <li><a href="index.php?action=post&id=<?= htmlspecialchars($data['id']) ?>" class="button">Display</a></li>
-                        <li><a href="index.php?action=modifyPost&id=<?= htmlspecialchars($data['id']) ?>" class="button">Modify</a></li>
-                        <li><a href="index.php?action=deletePost&id=<?= htmlspecialchars($data['id']) ?>" class="button">Delete</a></li>
+                        <li><a href="index.php?action=post&id=<?= htmlspecialchars($data['id'], ENT_COMPAT, 'UTF-8') ?>" class="button">Display</a></li>
+                        <li><a href="index.php?action=modifyPost&id=<?= htmlspecialchars($data['id'], ENT_COMPAT, 'UTF-8') ?>" class="button">Modify</a></li>
+                        <li><a href="index.php?action=deletePost&id=<?= htmlspecialchars($data['id'], ENT_COMPAT, 'UTF-8') ?>" class="button">Delete</a></li>
                     </ul>
                 </div>
             </div>

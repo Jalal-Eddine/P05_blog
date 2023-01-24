@@ -26,18 +26,18 @@ while ($data = $posts->fetch()) {
     <!-- Two -->
     <section id="two" class="spotlights">
         <section>
-            <a href="index.php?action=post&id=<?= htmlspecialchars($data['id']) ?>" class="image">
-                <img src="<?= htmlspecialchars($data['hero_link']) ?>" alt="" data-position="center center" />
+            <a href="index.php?action=post&id=<?= htmlspecialchars($data['id'], ENT_COMPAT, 'UTF-8') ?>" class="image">
+                <img src="<?= htmlspecialchars($data['hero_link'], ENT_COMPAT, 'UTF-8') ?>" alt="" data-position="center center" />
             </a>
             <div class="content">
                 <div class="inner">
                     <header class="major">
-                        <h3><a href="index.php?action=post&id=<?= htmlspecialchars($data['id']) ?>"><?= htmlspecialchars($data['title']) ?></a></h3><br>
-                        <em>le <?= htmlspecialchars($data['update_date']) ?></em>
+                        <h3><a href="index.php?action=post&id=<?= htmlspecialchars($data['id'], ENT_COMPAT, 'UTF-8') ?>"><?= htmlspecialchars($data['title'], ENT_COMPAT, 'UTF-8') ?></a></h3><br>
+                        <em>le <?= htmlspecialchars($data['update_date'], ENT_COMPAT, 'UTF-8') ?></em>
                     </header>
-                    <p><?= nl2br(htmlspecialchars($data['excerpt'])) ?></p>
+                    <p><?= nl2br(htmlspecialchars($data['excerpt'], ENT_COMPAT, 'UTF-8')) ?></p>
                     <ul class="actions">
-                        <li><a href="index.php?action=post&id=<?= htmlspecialchars($data['id']) ?>" class="button">Learn more</a></li>
+                        <li><a href="index.php?action=post&id=<?= htmlspecialchars($data['id'], ENT_COMPAT, 'UTF-8') ?>" class="button">Learn more</a></li>
                     </ul>
                 </div>
             </div>

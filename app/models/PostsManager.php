@@ -67,7 +67,7 @@ class PostsManager extends Manager
             $delete->execute(array($postId));
             echo "Record deleted successfully";
         } catch (PDOException $e) {
-            echo htmlspecialchars($e->getMessage());
+            echo htmlspecialchars($e->getMessage(), ENT_COMPAT, 'UTF-8');
         }
     }
 }
