@@ -9,11 +9,11 @@ $adminController = new AdminController;
 
 try {
     if (isset($_GET['action'])) {
-        // if(!isset($_SERVER['HTTP_REFERER'])){
-        //     // redirect them to the homepage
-        //     header('location:index.php');
-        //     exit;
-        // }
+        if (!isset($_SERVER['HTTP_REFERER'])) {
+            // redirect them to the homepage
+            header('location:index.php');
+            exit;
+        }
         if ($_GET['action'] == 'listPosts') {
             $postController->listPosts();
         } elseif ($_GET['action'] == 'post') {
@@ -45,6 +45,6 @@ try {
         require('views/home.php');
     }
 } catch (Exception $e) { // if there is an error 
-    echo 'Erreur : ' . htmlspecialchars($e->getMessage(), ENT_COMPAT, 'UTF-8');
+    echo 'Erreur : ' . $e->getMessage();
     require('views/errorView.php');
 }
