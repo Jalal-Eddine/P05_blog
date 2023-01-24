@@ -16,18 +16,18 @@
 </section>
 <div id="main" class="alt">
     <section class="inner">
-        <form action="index.php?action=modifyPost&id=<?php echo htmlspecialchars($post['id']); ?>" method="post">
+        <form action="index.php?action=modifyPost&id=<?php echo htmlspecialchars($post['id'], ENT_COMPAT, 'UTF-8'); ?>" method="post">
             <div>
                 <label for="title">Title</label>
-                <input type="text" id="title" name="title" value="<?php echo htmlspecialchars($post['title']); ?>" />
+                <input type="text" id="title" name="title" value="<?php echo htmlspecialchars($post['title'], ENT_COMPAT, 'UTF-8'); ?>" />
             </div><br />
             <div>
                 <label for="author">Author</label>
                 <select name="author" id="author">
-                    <option value="<?php echo htmlspecialchars($post['user_id']); ?>"><?php echo htmlspecialchars($post['first_name']) . " " . htmlspecialchars($post['last_name']); ?></option>
+                    <option value="<?php echo htmlspecialchars($post['user_id'], ENT_COMPAT, 'UTF-8'); ?>"><?php echo htmlspecialchars($post['first_name'], ENT_COMPAT, 'UTF-8') . " " . htmlspecialchars($post['last_name'], ENT_COMPAT, 'UTF-8'); ?></option>
                     <?php while ($author = $authors->fetch()) {
-                        if ($author['id'] != htmlspecialchars($post['user_id'])) { ?>
-                            <option value="<?php echo htmlspecialchars($author['id']); ?>"><?php echo htmlspecialchars($author['first_name']) . " " . htmlspecialchars($author['last_name']); ?></option>
+                        if ($author['id'] != htmlspecialchars($post['user_id'], ENT_COMPAT, 'UTF-8')) { ?>
+                            <option value="<?php echo htmlspecialchars($author['id'], ENT_COMPAT, 'UTF-8'); ?>"><?php echo htmlspecialchars($author['first_name'], ENT_COMPAT, 'UTF-8') . " " . htmlspecialchars($author['last_name'], ENT_COMPAT, 'UTF-8'); ?></option>
                     <?php
                         }
                     } ?>
@@ -35,15 +35,15 @@
             </div><br />
             <div>
                 <label for="hero_link">Hero link</label>
-                <input type="text" id="hero_link" name="hero_link" value="<?php echo htmlspecialchars($post['hero_link']) ?>" />
+                <input type="text" id="hero_link" name="hero_link" value="<?php echo htmlspecialchars($post['hero_link'], ENT_COMPAT, 'UTF-8') ?>" />
             </div><br />
             <div>
                 <label for="excerpt">Excerpt</label>
-                <textarea id="excerpt" name="excerpt" rows="5"><?php echo htmlspecialchars($post['excerpt']) ?></textarea>
+                <textarea id="excerpt" name="excerpt" rows="5"><?php echo htmlspecialchars($post['excerpt'], ENT_COMPAT, 'UTF-8') ?></textarea>
             </div><br />
             <div>
                 <label for="content">Content</label>
-                <textarea id="mytextarea" name="content" rows="15"><?php echo htmlspecialchars($post['content']) ?></textarea>
+                <textarea id="mytextarea" name="content" rows="15"><?php echo htmlspecialchars($post['content'], ENT_COMPAT, 'UTF-8') ?></textarea>
             </div><br />
             <div>
                 <input type="submit" />
